@@ -1,0 +1,42 @@
+{
+  "name": "concept-nacre-room",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Nacre Room: a fictional hair and beauty salon concept by OFF/SHIFT Studio.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test",
+    "test": "npm run test:unit && npm run test:e2e",
+    "lhci": "lhci autorun",
+    "screens": "node scripts/screenshots.mjs",
+    "contrast": "node scripts/contrast.mjs",
+    "cf:build": "opennextjs-cloudflare build",
+    "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "cf:smoke": "npm run cf:build && node scripts/cf-smoke.mjs"
+  },
+  "dependencies": {
+    "@opennextjs/cloudflare": "^1.20.13",
+    "next": "15.5",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@eslint/eslintrc": "^3.3.7",
+    "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "15.5",
+    "typescript": "5.9",
+    "vitest": "^5.0.5",
+    "wrangler": "^4.152.0"
+  }
+}
