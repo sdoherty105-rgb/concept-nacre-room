@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { categories, services } from "@/lib/services";
+import { joinMeta } from "@/lib/meta";
 import { addOnsFor, formatDuration, formatPrice } from "@/lib/planner";
 import { usePlanner } from "./PlannerProvider";
 
@@ -41,10 +42,11 @@ export function Planner() {
                 <>
                   <span className="plan-mini-name">
                     {summary.service!.name}
-                    {summary.addOns.length > 0 && ` +${summary.addOns.length}`}
+                    {summary.addOns.length > 0 &&
+                      ` (${summary.addOns.length} add-on${summary.addOns.length > 1 ? "s" : ""})`}
                   </span>
                   <span>
-                    {formatDuration(summary.minutes)} · {formatPrice(summary.price)}
+                    {joinMeta(formatDuration(summary.minutes), formatPrice(summary.price))}
                   </span>
                 </>
               ) : (
@@ -73,7 +75,7 @@ export function Planner() {
                           <span className="choice-body">
                             <span className="choice-name">{s.name}</span>
                             <span className="choice-meta">
-                              {formatDuration(s.minutes)} · {formatPrice(s.price)}
+                              {joinMeta(formatDuration(s.minutes), formatPrice(s.price))}
                             </span>
                           </span>
                         </label>
@@ -105,7 +107,10 @@ export function Planner() {
                         <span className="choice-body">
                           <span className="choice-name">{a.name}</span>
                           <span className="choice-meta">
-                            {a.minutes > 0 ? `+${a.minutes} min` : "No extra time"} · +{formatPrice(a.price)}
+                            {joinMeta(
+                              a.minutes > 0 ? `${a.minutes} min extra` : "No extra time",
+                              `add ${formatPrice(a.price)}`,
+                            )}
                           </span>
                           <span className="choice-desc">{a.description}</span>
                         </span>
@@ -128,14 +133,20 @@ export function Planner() {
                     <li>
                       <span>{summary.service!.name}</span>
                       <span>
-                        {formatDuration(summary.service!.minutes)} · {formatPrice(summary.service!.price)}
+                        {joinMeta(
+                          formatDuration(summary.service!.minutes),
+                          formatPrice(summary.service!.price),
+                        )}
                       </span>
                     </li>
                     {summary.addOns.map((a) => (
                       <li key={a.id}>
                         <span>{a.name}</span>
                         <span>
-                          {a.minutes > 0 ? `+${a.minutes} min` : "No extra time"} · +{formatPrice(a.price)}
+                          {joinMeta(
+                            a.minutes > 0 ? `${a.minutes} min extra` : "No extra time",
+                            `add ${formatPrice(a.price)}`,
+                          )}
                         </span>
                       </li>
                     ))}

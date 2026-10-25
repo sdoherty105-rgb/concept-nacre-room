@@ -1,6 +1,6 @@
 import { categories, services } from "@/lib/services";
 import { formatDuration, formatPrice } from "@/lib/planner";
-import { ChooseLink } from "./ChooseLink";
+import { PlanLink } from "./PlanLink";
 
 export function ServicesMenu() {
   return (
@@ -32,7 +32,7 @@ export function ServicesMenu() {
                       <div className="menu-item-meta">
                         <span className="menu-price">{formatPrice(s.price)}</span>
                         <span className="menu-time">{formatDuration(s.minutes)}</span>
-                        <ChooseLink serviceId={s.id} serviceName={s.name} />
+                        <PlanLink serviceId={s.id} serviceName={s.name} />
                       </div>
                     </li>
                   ))}

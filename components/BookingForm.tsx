@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useRef, useState, useSyncExternalStore, type FormEvent } from "react";
+import { joinMeta } from "@/lib/meta";
 import { formatDuration, formatPrice } from "@/lib/planner";
+import { CheckIcon } from "./icons/UiIcons";
 import { stylistPreferences, timeWindows } from "@/lib/services";
 import { isClosedDay } from "@/lib/hours";
 import { usePlanner } from "./PlannerProvider";
@@ -108,7 +110,9 @@ export function BookingForm() {
         <div className="book-card">
           {submitted ? (
             <div ref={successRef} tabIndex={-1} className="success" role="status" data-testid="booking-success">
-              <p className="success-mark" aria-hidden="true">✓</p>
+              <p className="success-mark" aria-hidden="true">
+                <CheckIcon />
+              </p>
               <h3>Thank you, {submitted.name.trim().split(" ")[0]}. This is a demo.</h3>
               <p>
                 Your request was <strong>not sent</strong> anywhere because Nacre Room is a fictional business. On a
@@ -119,19 +123,22 @@ export function BookingForm() {
                   <dt>Appointment</dt>
                   <dd>
                     {summary.service?.name}
-                    {summary.addOns.length > 0 && ` + ${summary.addOns.map((a) => a.name).join(", ")}`}
+                    {summary.addOns.length > 0 && `, ${summary.addOns.map((a) => a.name).join(", ")}`}
                   </dd>
                 </div>
                 <div>
                   <dt>Total</dt>
                   <dd>
-                    {formatDuration(summary.minutes)} · {formatPrice(summary.price)}
+                    {joinMeta(formatDuration(summary.minutes), formatPrice(summary.price))}
                   </dd>
                 </div>
                 <div>
                   <dt>Preferred</dt>
                   <dd>
-                    {submitted.date} · {timeWindows.find((t) => t.value === submitted.window)?.label}
+                    {joinMeta(
+                      submitted.date,
+                      timeWindows.find((t) => t.value === submitted.window)?.label ?? "",
+                    )}
                   </dd>
                 </div>
               </dl>
@@ -162,10 +169,12 @@ export function BookingForm() {
                   <>
                     <p className="ya-line">
                       <strong>{summary.service.name}</strong>
-                      {summary.addOns.length > 0 && <span> + {summary.addOns.map((a) => a.name).join(", ")}</span>}
+                      {summary.addOns.length > 0 && (
+                        <span>, {summary.addOns.map((a) => a.name).join(", ")}</span>
+                      )}
                     </p>
                     <p className="ya-totals">
-                      {formatDuration(summary.minutes)} · {formatPrice(summary.price)}
+                      {joinMeta(formatDuration(summary.minutes), formatPrice(summary.price))}
                     </p>
                     <Link href="/#plan" className="text-link">
                       Change selection

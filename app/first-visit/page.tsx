@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ChevronDownIcon } from "@/components/icons/UiIcons";
 
 export const metadata: Metadata = {
   title: "Your first visit | Nacre Room (fictional concept)",
@@ -91,7 +92,10 @@ export default function FirstVisit() {
           <div className="faq">
             {faqs.map((f) => (
               <details key={f.q}>
-                <summary>{f.q}</summary>
+                <summary>
+                  <span>{f.q}</span>
+                  <ChevronDownIcon />
+                </summary>
                 <p>{f.a}</p>
               </details>
             ))}

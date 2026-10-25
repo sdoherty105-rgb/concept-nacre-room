@@ -468,6 +468,11 @@ ol {
   padding-block: clamp(4rem, 9vw, 7.5rem);
 }
 
+.lazy-island-skel {
+  min-height: 12rem;
+  background: var(--pearl);
+}
+
 .section-head {
   margin-bottom: clamp(2rem, 5vw, 3.5rem);
 }
@@ -540,17 +545,7 @@ ol {
 }
 
 .hero-notes li {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.hero-notes li::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--bronze);
+  padding-left: 0;
 }
 
 .hero-visual {
@@ -562,6 +557,14 @@ ol {
   width: 100%;
   height: auto;
   filter: drop-shadow(0 30px 40px rgba(85, 72, 64, 0.18));
+}
+
+.hero-art-skel {
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 520 / 640;
+  border-radius: var(--radius);
+  background: linear-gradient(165deg, var(--blush-soft), var(--pearl-deep));
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -1391,15 +1394,10 @@ textarea:focus-visible {
 }
 
 .success-mark {
-  display: inline-grid;
-  place-items: center;
-  width: 3.5rem;
-  height: 3.5rem;
+  display: flex;
+  justify-content: center;
   margin: 0 auto 1rem;
-  border-radius: 50%;
-  background: var(--ink);
-  color: var(--pearl);
-  font-size: 1.5rem;
+  color: var(--ink);
 }
 
 .success h3 {
@@ -1517,19 +1515,7 @@ textarea:focus-visible {
 }
 
 .visit-facts li {
-  padding-left: 1.4rem;
-  position: relative;
-}
-
-.visit-facts li::before {
-  content: "";
-  position: absolute;
-  left: 0.2rem;
-  top: 0.7em;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--bronze-deep);
+  padding-left: 0;
 }
 
 /* Footer */
@@ -1679,16 +1665,18 @@ textarea:focus-visible {
   display: none;
 }
 
-.faq summary::after {
-  content: "+";
-  flex: none;
-  font-family: var(--font-body);
-  font-size: 1.5rem;
-  color: var(--bronze-deep);
+.faq summary span {
+  flex: 1;
 }
 
-.faq details[open] summary::after {
-  content: "–";
+.faq .icon-chevron {
+  flex: none;
+  color: var(--bronze-deep);
+  transition: transform 0.2s ease;
+}
+
+.faq details[open] .icon-chevron {
+  transform: rotate(180deg);
 }
 
 .faq details p {

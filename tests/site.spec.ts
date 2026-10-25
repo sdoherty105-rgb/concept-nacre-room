@@ -31,7 +31,7 @@ for (const p of pages) {
     test("shows the visible concept label linking to the studio", async ({ page }) => {
       await page.goto(p.path);
       const label = page.getByTestId("concept-label").getByRole("link", {
-        name: "An OFF/SHIFT concept — fictional demonstration",
+        name: "An OFF/SHIFT concept, fictional demonstration",
       });
       await expect(label).toBeVisible();
       await expect(label).toHaveAttribute("href", CONCEPT_URL);
@@ -69,12 +69,13 @@ test("home page content works without JavaScript", async ({ browser }) => {
   await expect(page.getByText("Signature Cut & Finish").first()).toBeVisible();
   await expect(page.getByText("$110").first()).toBeVisible();
   await expect(page.getByRole("heading", { name: "Come and see us" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "Request this appointment" })).toBeDisabled();
+  await expect(page.getByRole("button", { name: "Request this appointment" })).toHaveCount(0);
   await ctx.close();
 });
 
 async function gotoHydrated(page: Page) {
-  await page.goto("/");
+  await page.goto("/#plan");
+  await expect(page.locator("#plan")).toBeVisible({ timeout: 20000 });
   await expect(page.getByTestId("booking-form").getByRole("button", { name: "Request this appointment" })).toBeEnabled();
 }
 
@@ -97,12 +98,14 @@ test.describe("service selector", () => {
     const card = page.locator(".your-appointment");
     await expect(card).toContainText("Soft Balayage");
     await expect(card).toContainText("Gloss finish");
-    await expect(card).toContainText("3 hr 15 min · $388");
+    await expect(card).toContainText("3 hr 15 min, $388");
   });
 
   test("'Plan this' on the menu selects the service", async ({ page }) => {
-    await gotoHydrated(page);
+    await page.goto("/");
     await page.getByRole("link", { name: "Plan this: Scalp Ritual" }).click();
+    await page.waitForURL(/#plan\?service=scalp-ritual/);
+    await expect(page.locator("#plan")).toBeVisible({ timeout: 20000 });
     await expect(page.getByRole("radio", { name: /Scalp Ritual/ })).toBeChecked();
     await expect(page.getByTestId("total-price")).toHaveText("$90");
   });

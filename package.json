@@ -16,7 +16,8 @@
     "screens": "node scripts/screenshots.mjs",
     "contrast": "node scripts/contrast.mjs",
     "cf:build": "opennextjs-cloudflare build",
-    "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview"
+    "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "cf:smoke": "npm run cf:build && node scripts/cf-smoke.mjs"
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.20.13",

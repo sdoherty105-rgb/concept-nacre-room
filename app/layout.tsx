@@ -6,19 +6,23 @@ import { Footer } from "@/components/Footer";
 import "./globals.css";
 
 const display = localFont({
-  src: "./fonts/DMSerifDisplay-Regular.woff2",
+  src: "./fonts/DMSerifDisplay-Latin.woff2",
   weight: "400",
   style: "normal",
   variable: "--nr-display",
   display: "swap",
+  adjustFontFallback: "Times New Roman",
+  preload: true,
   fallback: ["Georgia", "Times New Roman", "serif"],
 });
 
 const body = localFont({
   src: "./fonts/PlusJakartaSans-Variable.woff2",
-  weight: "200 800",
+  weight: "400 700",
   variable: "--nr-body",
   display: "swap",
+  adjustFontFallback: "Arial",
+  preload: false,
   fallback: ["system-ui", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
 });
 

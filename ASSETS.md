@@ -18,7 +18,7 @@ No photographs are used. No images of people or faces appear anywhere on the sit
 
 | Font | File | Source | Licence |
 | --- | --- | --- | --- |
-| DM Serif Display (Regular 400) | `app/fonts/DMSerifDisplay-Regular.woff2` | Google Fonts, via the Fontsource npm package `@fontsource/dm-serif-display` | SIL Open Font License 1.1 (`app/fonts/LICENSE-DMSerifDisplay.txt`) |
+| DM Serif Display (Regular 400, Latin subset) | `app/fonts/DMSerifDisplay-Latin.woff2` (subset from `DMSerifDisplay-Regular.woff2` with `pyftsubset`, U+0020–007F) | Google Fonts, via the Fontsource npm package `@fontsource/dm-serif-display` | SIL Open Font License 1.1 (`app/fonts/LICENSE-DMSerifDisplay.txt`) |
 | Plus Jakarta Sans (variable, 200 to 800) | `app/fonts/PlusJakartaSans-Variable.woff2` | Google Fonts, via the Fontsource npm package `@fontsource-variable/plus-jakarta-sans` | SIL Open Font License 1.1 (`app/fonts/LICENSE-PlusJakartaSans.txt`) |
 
 Fonts are loaded through `next/font/local`, so they are served from this site's own origin.

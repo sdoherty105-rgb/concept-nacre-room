@@ -4,7 +4,7 @@ export function ConceptBar() {
   return (
     <div className="concept-bar" data-testid="concept-label">
       <a href={CONCEPT_URL} rel="noopener">
-        An OFF/SHIFT concept — fictional demonstration
+        An OFF/SHIFT concept, fictional demonstration
       </a>
     </div>
   );

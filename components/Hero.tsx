@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { HeroArt } from "./art/HeroArt";
+import { HeroVisual } from "./HeroVisual";
 
 export function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-title">
       <div className="container hero-grid">
         <div className="hero-copy">
-          <p className="eyebrow">Hair, colour &amp; skin · Marlowe Cove, Perth</p>
+          <p className="eyebrow">Hair, colour &amp; skin, Marlowe Cove, Perth</p>
           <h1 id="hero-title">
             Your time.
             <br />
@@ -30,9 +30,7 @@ export function Hero() {
             <li>Step-free entry</li>
           </ul>
         </div>
-        <div className="hero-visual">
-          <HeroArt />
-        </div>
+        <HeroVisual />
       </div>
     </section>
   );

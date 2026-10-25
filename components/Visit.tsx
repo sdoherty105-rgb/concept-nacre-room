@@ -1,5 +1,5 @@
 import { formatClock, weekHours } from "@/lib/hours";
-import { OpenNow } from "./OpenNow";
+import { OpenNowLazy } from "./OpenNowLazy";
 
 const order = [2, 3, 4, 5, 6, 0, 1];
 
@@ -10,7 +10,7 @@ export function Visit() {
         <div>
           <p className="eyebrow">Hours &amp; location</p>
           <h2 id="visit-title">Come and see us</h2>
-          <OpenNow />
+          <OpenNowLazy />
           <table className="hours-table">
             <caption className="sr-only">Opening hours</caption>
             <thead className="sr-only">
@@ -27,7 +27,7 @@ export function Visit() {
                     <th scope="row">{d.day}</th>
                     <td>
                       {d.open === null ? "Closed" : `${formatClock(d.open)} to ${formatClock(d.close!)}`}
-                      {d.note && <span className="hours-note"> · {d.note}</span>}
+                      {d.note && <span className="hours-note"> ({d.note})</span>}
                     </td>
                   </tr>
                 );
@@ -60,7 +60,7 @@ export function Visit() {
               <li>Street parking on Tidewater Lane</li>
               <li>A short walk from the Marlowe Cove bus interchange</li>
             </ul>
-            <p>(08) 5550 0142 · hello@nacre-room.example</p>
+            <p>(08) 5550 0142, hello@nacre-room.example</p>
           </div>
         </div>
       </div>
