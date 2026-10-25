@@ -1,51 +1,11 @@
-import { BottlesArt, LinenArt, MirrorArt, RippleArt } from "./art/SpaceArt";
-
+import Link from "next/link";
 const points = [
-  { title: "Soft, natural light", text: "North-facing windows, pale lime-washed walls and warm lamps for the later hours. Colour reads true here." },
-  { title: "Unhurried by design", text: "We book each chair with room to breathe, so no one is rushed in or out and conversations are never cut short." },
-  { title: "A quieter kind of salon", text: "Low music, linen-lined stations and a tea and sparkling water bar. Come as you are, leave a little lighter." },
-  { title: "Considered products", text: "A small, edited shelf of nourishing formulas, chosen to be used well at home. Never a hard sell." },
+  { title: "Time to talk", text: "Every appointment starts with a consultation. Bring a reference picture, tell us what has worked before, or start with what you would like to change." },
+  { title: "Natural light", text: "North-facing windows and warm lighting at the stations help us see your colour clearly, from the consultation to the finish." },
+  { title: "Your pace", text: "Appointments have room for questions, a drink and a little breathing space. Let us know if you prefer a quieter visit." },
+  { title: "Care at home", text: "We will explain how to look after your cut and colour between visits, with product advice matched to your routine." },
 ];
-
 export function Space() {
-  return (
-    <section id="space" className="section section-dark" aria-labelledby="space-title">
-      <div className="container space-grid">
-        <div className="space-copy">
-          <p className="eyebrow">The space &amp; the experience</p>
-          <h2 id="space-title">A room that slows you down</h2>
-          <p className="lead">
-            Nacre is the iridescent lining of a shell: soft, luminous, quietly layered. The room is built in the same
-            spirit.
-          </p>
-          <ul className="point-list">
-            {points.map((p) => (
-              <li key={p.title}>
-                <h3>{p.title}</h3>
-                <p>{p.text}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="space-mosaic" aria-label="Illustrations of the salon: mirror, products, water and linen">
-          <figure className="tile tile-1">
-            <MirrorArt />
-            <figcaption>Arched mirrors</figcaption>
-          </figure>
-          <figure className="tile tile-2">
-            <BottlesArt />
-            <figcaption>The edited shelf</figcaption>
-          </figure>
-          <figure className="tile tile-3">
-            <RippleArt />
-            <figcaption>Warm basins</figcaption>
-          </figure>
-          <figure className="tile tile-4">
-            <LinenArt />
-            <figcaption>Linen &amp; stone</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-  );
+  return <section id="space" className="section salon-space" aria-labelledby="space-title"><div className="container salon-space-grid"><div><p className="eyebrow">In the room</p><h2 id="space-title">Come in.<br /><em>Settle in.</em></h2><Link href="/first-visit">A guide to your first visit</Link></div><ul className="point-list">{points.map(p => <li key={p.title}><h3>{p.title}</h3><p>{p.text}</p></li>)}</ul></div></section>;
 }
+

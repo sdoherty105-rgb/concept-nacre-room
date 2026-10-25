@@ -1,37 +1,24 @@
 import Link from "next/link";
-import { HeroVisual } from "./HeroVisual";
+
+const index = [
+  { id: "hair", label: "Cut & style" },
+  { id: "colour", label: "Colour" },
+  { id: "treatments", label: "Hair & scalp" },
+  { id: "beauty", label: "Brows, lashes & skin" },
+];
 
 export function Hero() {
   return (
-    <section className="hero" aria-labelledby="hero-title">
-      <div className="container hero-grid">
-        <div className="hero-copy">
-          <p className="eyebrow">Hair, colour &amp; skin, Marlowe Cove, Perth</p>
-          <h1 id="hero-title">
-            Your time.
-            <br />
-            Beautifully spent.
-          </h1>
-          <p className="lead">
-            A calm, considered salon for hair, colour, brows and skin. Build your appointment in a minute, see exactly
-            how long it takes and what it costs, then send us a request.
-          </p>
-          <div className="hero-actions">
-            <Link href="/#plan" className="btn btn-ink">
-              Build your appointment
-            </Link>
-            <Link href="/#services" className="btn btn-outline">
-              See the menu
-            </Link>
-          </div>
-          <ul className="hero-notes" aria-label="At a glance">
-            <li>Tuesday to Saturday, by appointment</li>
-            <li>Late night Thursdays until 8pm</li>
-            <li>Step-free entry</li>
-          </ul>
+    <section className="salon-front" aria-labelledby="hero-title">
+      <div className="container">
+        <div className="salon-overline"><span>A hair &amp; beauty salon</span><span>Marlowe Cove, Perth</span></div>
+        <div className="salon-cover">
+          <h1 id="hero-title">Nacre<br /><span>Room</span></h1>
+          <div className="salon-index"><p>A cut that feels like you.<br />Colour you can live in.</p><nav aria-label="Explore salon services"><ol>{index.map((item, i) => <li key={item.id}><Link href={`/#cat-${item.id}`}><span>{item.label}</span><small>0{i + 1}</small></Link></li>)}</ol></nav></div>
         </div>
-        <HeroVisual />
+        <div className="salon-cover-foot"><Link href="/#plan">Build your appointment</Link><p>Tuesday to Saturday.<br />Thursday evenings until 8pm.</p><Link href="/first-visit">Your first visit</Link></div>
       </div>
     </section>
   );
 }
+

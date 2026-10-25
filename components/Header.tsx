@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { PearlMark } from "./art/Logo";
 import { MobileNav } from "./MobileNav";
 
 export const navLinks = [
@@ -16,7 +15,6 @@ export function Header() {
     <header className="site-header">
       <div className="container header-inner">
         <Link href="/" className="wordmark" aria-label="Nacre Room, home">
-          <PearlMark />
           <span>Nacre Room</span>
         </Link>
         <nav aria-label="Primary" className="primary-nav">
@@ -39,3 +37,4 @@ export function Header() {
     </header>
   );
 }
+

@@ -4,6 +4,7 @@ import { ConceptBar } from "@/components/ConceptBar";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import "./globals.css";
+import "./salon.css";
 
 const display = localFont({
   src: "./fonts/DMSerifDisplay-Latin.woff2",
@@ -55,3 +56,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+

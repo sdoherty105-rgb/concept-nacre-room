@@ -37,16 +37,6 @@ export function Visit() {
         </div>
 
         <div className="visit-card">
-          <svg viewBox="0 0 480 220" className="map-art" role="img" aria-label="Stylised illustration of a street corner with a marker for Nacre Room. Not a real map.">
-            <rect width="480" height="220" fill="#E8E1D9" />
-            <path d="M0 150H480M0 60H480M120 0V220M330 0V220" stroke="#F3EFEA" strokeWidth="14" />
-            <path d="M0 150H480M120 0V220" stroke="#DBBBB3" strokeWidth="2" strokeDasharray="6 8" />
-            <rect x="140" y="76" width="170" height="60" rx="6" fill="#DBBBB3" opacity="0.7" />
-            <rect x="350" y="76" width="110" height="60" rx="6" fill="#CDB9A8" opacity="0.7" />
-            <rect x="10" y="76" width="96" height="60" rx="6" fill="#CDB9A8" opacity="0.7" />
-            <circle cx="225" cy="106" r="16" fill="#24201E" />
-            <circle cx="225" cy="106" r="6" fill="#F3EFEA" />
-          </svg>
           <div className="visit-card-body">
             <h3>Nacre Room</h3>
             <address>
@@ -67,3 +57,4 @@ export function Visit() {
     </section>
   );
 }
+
