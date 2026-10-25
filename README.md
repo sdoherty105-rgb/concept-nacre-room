@@ -40,10 +40,15 @@ This repository does not deploy anything. Deployment and domain setup are done s
 
 | Token | Hex | Use |
 | --- | --- | --- |
-| Pearl | `#F3EFEA` | Page background |
-| Umber | `#554840` | Body text, dark sections |
-| Blush | `#DBBBB3` | Soft fills, accents on dark |
-| Bronze | `#AD9275` | Decorative lines and accents (never body text on light) |
-| Ink | `#24201E` | Headings, primary buttons, dark sections |
+| Pearl | `#F5F4F0` | Page background |
+| Umber | `#4F4B49` | Body text, dark sections |
+| Blush | `#E1B9AD` | Soft fills, accents on dark |
+| Bronze | `#BBA49B` | Decorative lines and accents (never body text on light) |
+| Ink | `#282326` | Headings, primary buttons, dark sections |
 
-Derived tints (`mist`, `pearl-deep`, `blush-soft`, `bronze-deep`) are used for cards and small accent text so every text pairing meets WCAG AA. Run `npm run contrast` for the numbers.
+Derived tints (`mist`, `pearl-deep`, `blush-soft`, `bronze-deep`) support the treatment menu, planner and small accent text. The rendered pages are checked with axe for WCAG AA contrast.
+
+
+## Visual redesign
+
+Nacre is now an editorial salon identity: a dark typographic cover, direct service index, open treatment menu and restrained specialist rows. Abstract pearl artwork, decorative mosaic tiles and the fictitious map panel have been removed. The planner renders directly with the booking form rather than waiting on a lazy-loading placeholder. Pricing, timing, add-on rules and no-network booking behaviour are retained.

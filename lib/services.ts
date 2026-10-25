@@ -27,9 +27,9 @@ export type AddOn = {
 
 export const categories: Category[] = [
   { id: "hair", name: "Cut & Style", blurb: "Shape, movement and finish, tailored to how you live." },
-  { id: "colour", name: "Colour", blurb: "Soft, dimensional tone with a considered, low-maintenance grow-out." },
-  { id: "treatments", name: "Hair & Scalp Rituals", blurb: "Slow, restorative care for the hair and skin beneath it." },
-  { id: "beauty", name: "Brows, Lashes & Skin", blurb: "Quiet, precise finishing touches and glow-first facials." },
+  { id: "colour", name: "Colour", blurb: "Root retouches, gloss and hand-painted colour." },
+  { id: "treatments", name: "Hair & Scalp Rituals", blurb: "Scalp care, conditioning and repair treatments." },
+  { id: "beauty", name: "Brows, Lashes & Skin", blurb: "Shaping, tinting, lash lifts and facial treatments." },
 ];
 
 export const services: Service[] = [
@@ -105,3 +105,4 @@ export const timeWindows = [
   { value: "evening", label: "Evening, Thursdays only (6pm to 8pm)" },
   { value: "flexible", label: "I'm flexible" },
 ];
+

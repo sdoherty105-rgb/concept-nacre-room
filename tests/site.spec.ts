@@ -3,7 +3,7 @@ import AxeBuilder from "@axe-core/playwright";
 
 const CONCEPT_URL = "https://offshiftstudio.com.au/concepts/nacre-room";
 const pages = [
-  { path: "/", h1: /your time\./i, status: 200 },
+  { path: "/", h1: /Nacre\s*Room/i, status: 200 },
   { path: "/first-visit", h1: /your first visit/i, status: 200 },
   { path: "/this-page-does-not-exist", h1: /drifted off/i, status: 404 },
 ];
@@ -64,12 +64,12 @@ test("home page content works without JavaScript", async ({ browser }) => {
   const ctx = await browser.newContext({ javaScriptEnabled: false });
   const page = await ctx.newPage();
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText(/beautifully spent/i);
+  await expect(page.getByRole("heading", { level: 1 })).toContainText(/Nacre\s*Room/i);
   await expect(page.getByRole("heading", { name: "Services, times and prices" })).toBeVisible();
   await expect(page.getByText("Signature Cut & Finish").first()).toBeVisible();
   await expect(page.getByText("$110").first()).toBeVisible();
   await expect(page.getByRole("heading", { name: "Come and see us" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "Request this appointment" })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Request this appointment" })).toBeDisabled();
   await ctx.close();
 });
 
@@ -191,3 +191,4 @@ function nextWeekday(target: number): string {
   const pad = (n: number) => String(n).padStart(2, "0");
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 }
+

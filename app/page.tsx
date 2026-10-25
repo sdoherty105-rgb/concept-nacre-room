@@ -1,5 +1,5 @@
 import { Hero } from "@/components/Hero";
-import { LazyPlannerIsland } from "@/components/LazyPlannerIsland";
+import { PlannerIsland } from "@/components/PlannerIsland";
 import { ServicesMenu } from "@/components/ServicesMenu";
 import { Space } from "@/components/Space";
 import { Stylists } from "@/components/Stylists";
@@ -10,10 +10,11 @@ export default function Home() {
     <>
       <Hero />
       <ServicesMenu />
-      <LazyPlannerIsland />
+      <PlannerIsland />
       <Space />
       <Stylists />
       <Visit />
     </>
   );
 }
+

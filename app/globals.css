@@ -468,10 +468,7 @@ ol {
   padding-block: clamp(4rem, 9vw, 7.5rem);
 }
 
-.lazy-island-skel {
-  min-height: 12rem;
-  background: var(--pearl);
-}
+
 
 .section-head {
   margin-bottom: clamp(2rem, 5vw, 3.5rem);
@@ -559,13 +556,7 @@ ol {
   filter: drop-shadow(0 30px 40px rgba(85, 72, 64, 0.18));
 }
 
-.hero-art-skel {
-  width: 100%;
-  max-width: 440px;
-  aspect-ratio: 520 / 640;
-  border-radius: var(--radius);
-  background: linear-gradient(165deg, var(--blush-soft), var(--pearl-deep));
-}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .hero-pearl {
@@ -1731,3 +1722,4 @@ textarea:focus-visible {
     border: 2px solid ButtonText;
   }
 }
+
