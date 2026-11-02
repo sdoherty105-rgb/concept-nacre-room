@@ -2,28 +2,47 @@
 
 Every asset in this project, with its source and licence. Nothing is loaded from a third-party host at runtime.
 
-## Retained artwork sources
+Photographs are generated editorial studies for a fictional salon. They are not pictures of clients, staff, or a real room. Faces are kept out of the frame: the camera sits behind the subject, or the crop is hair, shoulder, tools, or the basin.
 
-| Asset | Where | Source | Licence |
+## Generated photographs
+
+Made on 2 November 2026 with the Cursor image generator, then resized locally with `sharp` (AVIF and WebP). Master JPEGs live in `assets/source/`. Delivery files live in `public/media/`. The same grade is used throughout: 85mm-style shallow focus, a warm pearl ground, shadows cooled toward sea glass, no text and no logos.
+
+| Delivery name | Source master | What it shows | Used for |
 | --- | --- | --- | --- |
-| Space tiles: arched mirror, product bottles, ripples, linen folds | `components/art/SpaceArt.tsx` | Original inline SVG drawn for this concept | Original work |
-| Specialist glyphs (colour, cut, texture, skin) | `components/art/StylistGlyphs.tsx` | Original inline SVG drawn for this concept | Original work |
-| Pearl logo mark, favicon | `components/art/Logo.tsx`, `app/icon.svg` | Original inline SVG | Original work |
+| `cover-800`, `cover-864` | `assets/source/cover-portrait.jpg` | Dark hair in motion, seen from behind | Cover, contents thumbnail |
+| `colour-864` | `assets/source/colour-braid.jpg` | Chestnut braid with one rose ribbon, no face | Colour spread, contents thumbnail |
+| `shears-840` | `assets/source/still-shears.jpg` | Shears, two brushes, a lock of hair on linen | Care cluster, contents thumbnail |
+| `bottles-840` | `assets/source/still-bottles.jpg` | Three unlabelled frosted bottles and a dish of oil | Care cluster, contents thumbnail |
+| `basin-1100` | `assets/source/still-basin.jpg` | Matte cream basin, linen, a hairpin | Care cluster, journal, contents thumbnail |
+| `people-colour-800` | `assets/source/people-colour.jpg` | Honey hair, back of the head | Ione Voss, people opener |
+| `people-cut-800` | `assets/source/people-cut.jpg` | A precise dark bob, back of the head | Maren Pell, people index |
+| `people-texture-800` | `assets/source/people-texture.jpg` | Dark curls, back of the head | Sable Quinn |
+| `people-skin-864` | `assets/source/people-skin.jpg` | Shoulder and neck, hair covering the face | Edith Marlow |
 
-The redesigned homepage uses typography and its service menu instead of the pearl hero, mosaic, stylist glyphs or map panel. Space and specialist illustration sources remain in the repository as unused original artwork.
+Each delivery name has an `.avif` and a `.webp`. Thumbnails are `thumb-{name}.avif` and `thumb-{name}.webp` at 240 pixels wide, for the contents overlay. The cover is also served at 800 pixels wide for small screens. Source frames were 864 by 1152 (3:4) except the basin, which is 1152 by 864 (4:3), so some filenames keep the encoded width rather than a larger requested width.
 
-No photographs are used. No images of people or faces appear anywhere on the site.
+Prompt sheet, shared by every picture: fashion editorial photograph, shallow depth of field, seamless warm pearl backdrop close to `#F1ECE8`, soft light, cool grey-green shadows, no text, no logo, no face. Portraits add "seen from behind" or "hair falling forward so the face is hidden". Still lifes add "no people, no hands".
+
+The pictures are original generations for this concept. There is no third-party stock licence because they were not taken from a stock library.
 
 ## Fonts (self-hosted, subset to Latin, WOFF2)
 
 | Font | File | Source | Licence |
 | --- | --- | --- | --- |
-| DM Serif Display (Regular 400, Latin subset) | `app/fonts/DMSerifDisplay-Latin.woff2` (subset from `DMSerifDisplay-Regular.woff2` with `pyftsubset`, U+0020–007F) | Google Fonts, via the Fontsource npm package `@fontsource/dm-serif-display` | SIL Open Font License 1.1 (`app/fonts/LICENSE-DMSerifDisplay.txt`) |
-| Plus Jakarta Sans (variable, 200 to 800) | `app/fonts/PlusJakartaSans-Variable.woff2` | Google Fonts, via the Fontsource npm package `@fontsource-variable/plus-jakarta-sans` | SIL Open Font License 1.1 (`app/fonts/LICENSE-PlusJakartaSans.txt`) |
+| Bodoni Moda variable, roman (weight 400 to 900, optical size 6 to 96) | `app/fonts/BodoniModa-Roman.woff2` | [google/fonts](https://github.com/google/fonts) `ofl/bodonimoda`, subset with `pyftsubset` | SIL Open Font License 1.1 (`app/fonts/OFL-BodoniModa.txt`) |
+| Bodoni Moda variable, italic | `app/fonts/BodoniModa-Italic.woff2` | same family, not preloaded | SIL Open Font License 1.1 |
+| Jost variable, roman (weight 100 to 900) | `app/fonts/Jost-Roman.woff2` | [google/fonts](https://github.com/google/fonts) `ofl/jost`, subset with `pyftsubset` | SIL Open Font License 1.1 (`app/fonts/OFL-Jost.txt`) |
+| Jost variable, italic | `app/fonts/Jost-Italic.woff2` | same family, not preloaded | SIL Open Font License 1.1 |
 
-Fonts are loaded through `next/font/local`, so they are served from this site's own origin.
+Fonts are loaded through `next/font/local` with `font-display: optional` and are not preloaded. On a fast connection the webfont is used. On a slow one the size-adjusted fallback paints immediately and is not swapped in late, which keeps the cover's largest paint inside the performance budget. The cover photograph is preloaded. Fallback metrics use `adjustFontFallback` (`Times New Roman` for Bodoni, `Arial` for Jost).
+
+## Mark
+
+| Asset | Where | Source | Licence |
+| --- | --- | --- | --- |
+| Letter N favicon | `app/icon.svg` | Original, set in Georgia on a pearl square | Original work |
 
 ## Content
 
-All copy, services, prices, hours, the business name, the suburb ("Marlowe Cove"), the street address, the phone number and the email (a reserved `.example` domain) are invented for this fictional concept. There are no reviews, testimonials, awards, ratings, statistics or client logos.
-
+All copy, services, prices, hours, the business name, the suburb ("Marlowe Cove"), the street address, the phone number and the email (a reserved `.example` domain) are invented for this fictional concept. The four specialists are fictional characters. There are no reviews, testimonials, awards, ratings, statistics or client logos. Prices, times and the reservation are labelled on the page as demonstration data.

@@ -1,25 +1,47 @@
-// Computes WCAG contrast ratios for the palette pairings used on the site.
+// WCAG contrast for the Nacre issue palette. Text pairs must clear 4.5:1.
 const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);
 const lin = (c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
-const lum = (h) => { const [r, g, b] = hex(h).map(lin); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
-export const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
+const lum = (h) => {
+  const [r, g, b] = hex(h).map(lin);
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+export const ratio = (a, b) => {
+  const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m);
+  return (x + 0.05) / (y + 0.05);
+};
 
 const c = {
-  pearl: "#F3EFEA", umber: "#554840", blush: "#DBBBB3", bronze: "#AD9275", ink: "#24201E",
-  mist: "#FBF9F6", pearlDeep: "#E8E1D9", bronzeDeep: "#6E573B", blushSoft: "#EBD7D1",
+  pearl: "#F1ECE8",
+  ink: "#1E1824",
+  oxblood: "#8A3A4C",
+  sea: "#A9C1BB",
+  champagne: "#B79C6B",
 };
-const pairs = [
-  ["ink", "pearl", "heading on pearl"], ["umber", "pearl", "body on pearl"], ["umber", "mist", "body on card"],
-  ["umber", "pearlDeep", "body on deep pearl"], ["ink", "blush", "ink on blush"], ["umber", "blush", "umber on blush"],
-  ["bronzeDeep", "pearl", "bronze-deep text on pearl"], ["bronzeDeep", "mist", "bronze-deep text on card"],
-  ["bronzeDeep", "pearlDeep", "bronze-deep on deep pearl"],
-  ["bronze", "pearl", "bronze on pearl (decorative only)"], ["bronze", "ink", "bronze on ink"],
-  ["pearl", "ink", "pearl on ink"], ["blush", "ink", "blush on ink"], ["pearl", "umber", "pearl on umber"],
-  ["blush", "umber", "blush on umber"], ["bronze", "umber", "bronze on umber"], ["ink", "bronze", "ink on bronze"],
-  ["umber", "blushSoft", "umber on soft blush"], ["bronzeDeep", "blushSoft", "bronze-deep on soft blush"],
-  ["umber", "bronze", "umber on bronze"],
+
+const text = [
+  ["ink", "pearl", "text on pearl"],
+  ["pearl", "ink", "text on ink"],
+  ["oxblood", "pearl", "oxblood accent on pearl"],
+  ["pearl", "oxblood", "pearl text on oxblood block"],
+  ["champagne", "ink", "champagne label on ink"],
+  ["sea", "ink", "sea glass on ink, if used as text"],
 ];
-for (const [fg, bg, label] of pairs) {
+
+const decorative = [
+  ["oxblood", "ink", "oxblood on ink, block or rule only"],
+  ["champagne", "pearl", "champagne hairline on pearl"],
+  ["sea", "pearl", "sea glass rule on pearl"],
+];
+
+let failed = false;
+for (const [fg, bg, label] of text) {
   const r = ratio(c[fg], c[bg]);
-  console.log(`${r.toFixed(2).padStart(6)}:1  ${r >= 7 ? "AAA" : r >= 4.5 ? "AA " : r >= 3 ? "3:1" : "FAIL"}  ${label}`);
+  const ok = r >= 4.5;
+  if (!ok) failed = true;
+  console.log(`${r.toFixed(2).padStart(6)}:1  ${ok ? "AA " : "FAIL"}  ${label}`);
 }
+for (const [fg, bg, label] of decorative) {
+  const r = ratio(c[fg], c[bg]);
+  console.log(`${r.toFixed(2).padStart(6)}:1  rule  ${label}`);
+}
+if (failed) process.exit(1);

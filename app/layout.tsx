@@ -1,59 +1,82 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { ConceptBar } from "@/components/ConceptBar";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { Colophon } from "@/components/Colophon";
+import { Mast } from "@/components/Mast";
 import "./globals.css";
-import "./salon.css";
+import "./issue.css";
 
 const display = localFont({
-  src: "./fonts/DMSerifDisplay-Latin.woff2",
-  weight: "400",
+  src: "./fonts/BodoniModa-Roman.woff2",
+  weight: "400 900",
   style: "normal",
-  variable: "--nr-display",
+  variable: "--font-display",
+  display: "optional",
+  adjustFontFallback: "Times New Roman",
+  preload: false,
+  fallback: ["Times New Roman", "Georgia", "serif"],
+});
+
+const displayItalic = localFont({
+  src: "./fonts/BodoniModa-Italic.woff2",
+  weight: "400 900",
+  style: "italic",
+  variable: "--font-display-italic",
   display: "swap",
   adjustFontFallback: "Times New Roman",
-  preload: true,
-  fallback: ["Georgia", "Times New Roman", "serif"],
+  preload: false,
+  fallback: ["Times New Roman", "Georgia", "serif"],
 });
 
 const body = localFont({
-  src: "./fonts/PlusJakartaSans-Variable.woff2",
-  weight: "400 700",
-  variable: "--nr-body",
+  src: "./fonts/Jost-Roman.woff2",
+  weight: "100 900",
+  style: "normal",
+  variable: "--font-body",
+  display: "optional",
+  adjustFontFallback: "Arial",
+  preload: false,
+  fallback: ["Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
+});
+
+const bodyItalic = localFont({
+  src: "./fonts/Jost-Italic.woff2",
+  weight: "100 900",
+  style: "italic",
+  variable: "--font-body-italic",
   display: "swap",
   adjustFontFallback: "Arial",
   preload: false,
-  fallback: ["system-ui", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
+  fallback: ["Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
 });
 
 export const metadata: Metadata = {
-  title: "Nacre Room | Hair & Beauty Salon, Marlowe Cove, Perth (fictional concept)",
+  title: {
+    default: "Nacre Room, Issue 01 (fictional concept)",
+    template: "%s | Nacre Room (fictional concept)",
+  },
   description:
-    "Nacre Room is a fictional hair and beauty salon, designed by OFF/SHIFT Studio as a concept. Build an appointment, see the total time and price, and send a demo booking request.",
+    "Nacre Room is a fictional hair and beauty room, published as Issue 01 by OFF/SHIFT Studio. Prices, hours and reservations are demonstration data.",
   robots: { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false } },
   applicationName: "Nacre Room (concept)",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#F3EFEA",
+  themeColor: "#F1ECE8",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-AU" className={`${display.variable} ${body.variable}`}>
+    <html lang="en-AU" className={`${display.variable} ${displayItalic.variable} ${body.variable} ${bodyItalic.variable}`}>
       <body>
         <a href="#main" className="skip-link">
           Skip to content
         </a>
-        <ConceptBar />
-        <Header />
+        <Mast />
         <main id="main">{children}</main>
-        <Footer />
+        <Colophon />
       </body>
     </html>
   );
 }
-

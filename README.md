@@ -1,24 +1,28 @@
-# Nacre Room (concept 05)
+# Nacre Room (concept 04, Issue 01)
 
-A fictional hair and beauty salon website, designed by [OFF/SHIFT Studio](https://offshiftstudio.com.au) as a portfolio concept.
+A fictional hair and beauty room, designed by [OFF/SHIFT Studio](https://offshiftstudio.com.au) as a portfolio concept. This version is a magazine: a cover, a contents overlay, and spreads, not a brochure with a card grid.
 
 - Slug: `nacre-room`
-- Intended demo URL: `nacre-room.offshiftstudio.com.au` (not configured)
+- Intended demo URL: `nacre-room.offshiftstudio.com.au` (not configured from this branch)
 - Concept page: https://offshiftstudio.com.au/concepts/nacre-room
 
-> An OFF/SHIFT concept — fictional demonstration. Nacre Room is not a real business. Services, prices, people and the address are invented, and the booking form never sends or stores anything.
+> An OFF/SHIFT concept, fictional demonstration. Nacre Room is not a real business. Services, prices, people and the address are invented, and the reservation never sends or stores anything.
 
 ## Stack
 
-Next.js 15 (App Router, TypeScript), statically generated, deployable to Cloudflare Workers with `@opennextjs/cloudflare` (`wrangler.jsonc`, worker name `concept-nacre-room`). Plain CSS, self-hosted fonts, no analytics or trackers.
+Next.js 15 (App Router, TypeScript), statically generated, deployable to Cloudflare Workers with `@opennextjs/cloudflare` (`wrangler.jsonc`, worker name `concept-nacre-room`). Plain CSS, self-hosted fonts, no analytics or trackers. This branch does not deploy.
 
-## Pages and features
+## Pages
 
-- `/` hero, services menu with prices and durations, **appointment builder** (service + add-ons, live total time and price), the space and experience, specialists (by speciality only), demo booking request form, hours and location, footer
-- `/first-visit` what to expect, how an appointment unfolds, FAQ
-- Signature interaction: the builder's selection is shared (React context) with the booking form, so the chosen service, add-ons, total time and price appear in the request
-- Progressive enhancement: all content, the menu and prices render without JavaScript; interactive totals and the form need JS and say so
-- noindex everywhere: `<meta name="robots">`, `X-Robots-Tag` header (`next.config.ts` and `public/_headers`), `public/robots.txt`
+- `/` cover, contents prices, and the Colour, Cut and Care spreads, then the carte, people, journal, reserve and visit
+- `/the-carte` the price list in one column, with dotted leaders
+- `/people` four fictional specialists, each composed differently
+- `/journal` three house notes
+- `/reserve` one question at a time, with a running total
+
+The menu is a full-screen contents list. It works without JavaScript, because it is a link to an in-page overlay. The reservation totals need JavaScript and say so. Prices, hours and times are marked as demonstration data.
+
+noindex everywhere: `<meta name="robots">`, `X-Robots-Tag` (`next.config.ts` and `public/_headers`), `public/robots.txt`.
 
 ## Scripts
 
@@ -34,21 +38,14 @@ npm run contrast     # WCAG contrast ratios for the palette
 npm run cf:build     # OpenNext Cloudflare build (does not deploy)
 ```
 
-This repository does not deploy anything. Deployment and domain setup are done separately.
-
 ## Palette
 
 | Token | Hex | Use |
 | --- | --- | --- |
-| Pearl | `#F5F4F0` | Page background |
-| Umber | `#4F4B49` | Body text, dark sections |
-| Blush | `#E1B9AD` | Soft fills, accents on dark |
-| Bronze | `#BBA49B` | Decorative lines and accents (never body text on light) |
-| Ink | `#282326` | Headings, primary buttons, dark sections |
+| Pearl | `#F1ECE8` | Page background |
+| Ink violet | `#1E1824` | Text, and the dark spreads |
+| Oxblood rose | `#8A3A4C` | One loud use on each spread. Text only on pearl or as a solid block with pearl type |
+| Sea glass | `#A9C1BB` | Quiet rules and the grade of the photographs |
+| Champagne | `#B79C6B` | Hairlines and small labels on ink. Not body text on pearl |
 
-Derived tints (`mist`, `pearl-deep`, `blush-soft`, `bronze-deep`) support the treatment menu, planner and small accent text. The rendered pages are checked with axe for WCAG AA contrast.
-
-
-## Visual redesign
-
-Nacre is now an editorial salon identity: a dark typographic cover, direct service index, open treatment menu and restrained specialist rows. Abstract pearl artwork, decorative mosaic tiles and the fictitious map panel have been removed. The planner renders directly with the booking form rather than waiting on a lazy-loading placeholder. Pricing, timing, add-on rules and no-network booking behaviour are retained.
+Bodoni Moda is display only, at 20px and above. Body text is Jost.
