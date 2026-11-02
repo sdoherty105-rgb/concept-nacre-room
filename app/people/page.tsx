@@ -30,8 +30,8 @@ export default function PeoplePage() {
         </div>
         <div className="opener-photo">
           <Picture
-            name="people-colour"
-            alt="The back of a head of honey hair, face turned away, on a pearl ground."
+            name="people-skin"
+            alt="A shoulder and neck, dark hair falling forward so the face stays hidden, on a pearl ground."
             sizes="(max-width: 959px) 100vw, 42vw"
           />
         </div>

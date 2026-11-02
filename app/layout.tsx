@@ -6,13 +6,13 @@ import "./globals.css";
 import "./issue.css";
 
 const display = localFont({
-  src: "./fonts/BodoniModa-Roman.woff2",
-  weight: "400 900",
+  src: "./fonts/BodoniModa-Display.woff2",
+  weight: "520",
   style: "normal",
   variable: "--font-display",
-  display: "optional",
+  display: "swap",
   adjustFontFallback: "Times New Roman",
-  preload: false,
+  preload: true,
   fallback: ["Times New Roman", "Georgia", "serif"],
 });
 

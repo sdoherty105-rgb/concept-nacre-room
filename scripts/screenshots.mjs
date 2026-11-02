@@ -22,14 +22,16 @@ const widths = [
 
 const browser = await chromium.launch();
 for (const { w, h } of widths) {
-  const ctx = await browser.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: 1 });
-  const page = await ctx.newPage();
   for (const entry of pages) {
+    const ctx = await browser.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: 1 });
+    const page = await ctx.newPage();
+    const client = await ctx.newCDPSession(page);
+    await client.send("Network.setCacheDisabled", { cacheDisabled: true });
     await page.goto(base + entry.path, { waitUntil: "networkidle" });
     await page.evaluate(() => document.fonts.ready);
     await page.screenshot({ path: `${out}/${entry.name}-${w}.png`, fullPage: true });
     console.log(`${out}/${entry.name}-${w}.png`);
+    await ctx.close();
   }
-  await ctx.close();
 }
 await browser.close();

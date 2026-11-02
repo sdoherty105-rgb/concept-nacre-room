@@ -30,13 +30,13 @@ The pictures are original generations for this concept. There is no third-party 
 
 | Font | File | Source | Licence |
 | --- | --- | --- | --- |
-| Bodoni Moda variable, roman (weight 400 to 900, optical size 6 to 96) | `app/fonts/BodoniModa-Roman.woff2` | [google/fonts](https://github.com/google/fonts) `ofl/bodonimoda`, subset with `pyftsubset` | SIL Open Font License 1.1 (`app/fonts/OFL-BodoniModa.txt`) |
-| Bodoni Moda cover cut, static (weight 560, optical size 72, glyphs for “Nacre” and “Room” only) | `app/fonts/BodoniModa-Cover.woff2`, also inlined in `app/globals.css` | Instanced from the same roman variable font with `fonttools varLib.instancer`, then subset | SIL Open Font License 1.1 |
+| Bodoni Moda display, static roman (weight 520, optical size 72, Latin) | `app/fonts/BodoniModa-Display.woff2` | Instanced from the variable roman, then subset. Preloaded with `font-display: swap` and a size-adjusted Times fallback | SIL Open Font License 1.1 (`app/fonts/OFL-BodoniModa.txt`) |
+| Bodoni Moda cover cut, static (weight 520, optical size 72, glyphs for Nacre and Room only) | `app/fonts/BodoniModa-Cover.woff2`, also inlined in `app/globals.css` | Instanced at the same weight as the display headings, then subset | SIL Open Font License 1.1 |
 | Bodoni Moda variable, italic | `app/fonts/BodoniModa-Italic.woff2` | same family, not preloaded | SIL Open Font License 1.1 |
 | Jost variable, roman (weight 100 to 900) | `app/fonts/Jost-Roman.woff2` | [google/fonts](https://github.com/google/fonts) `ofl/jost`, subset with `pyftsubset` | SIL Open Font License 1.1 (`app/fonts/OFL-Jost.txt`) |
 | Jost variable, italic | `app/fonts/Jost-Italic.woff2` | same family, not preloaded | SIL Open Font License 1.1 |
 
-The cover masthead uses the static Bodoni cut, inlined in CSS, so those glyphs are in the first response. The variable faces load through `next/font/local` with `font-display: optional` and are not preloaded. The cover photograph is preloaded at 640 and 864 pixels wide. Fallback metrics use `adjustFontFallback` (`Times New Roman` for Bodoni, `Arial` for Jost).
+The cover masthead uses the static Bodoni cut at weight 520, inlined in CSS, so those glyphs match the display headings and do not wait on a second request. The variable roman is preloaded with `font-display: swap` and a size-adjusted Times fallback, so the other pages replace the fallback once the file arrives. Italics and Jost stay optional or unpreloaded. The cover photograph is preloaded at 640 and 864 pixels wide.
 
 ## Mark
 

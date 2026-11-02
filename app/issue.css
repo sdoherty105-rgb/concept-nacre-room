@@ -34,7 +34,7 @@
   justify-self: start;
   font-family: var(--display);
   font-size: 1.375rem;
-  font-weight: 560;
+  font-weight: 520;
   letter-spacing: 0;
 }
 
@@ -52,15 +52,29 @@
   position: fixed;
   z-index: 40;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  border: 0;
   overflow: auto;
   padding: 5rem var(--pad) 2.5rem;
   background: var(--ink);
   color: var(--pearl);
-  visibility: hidden;
 }
 
-.contents-overlay:target {
-  visibility: visible;
+.contents-overlay::backdrop {
+  background: var(--ink);
+}
+
+.overlay-close,
+button.menu-link {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
 }
 
 .overlay-close {
@@ -165,11 +179,18 @@ fieldset {
   z-index: 2;
   margin: 7vh 0 0;
   font-family: NacreCover, Georgia, serif;
-  font-weight: 560;
+  font-weight: 520;
   padding: 0 var(--pad);
   font-size: clamp(4.6rem, 22vw, 8rem);
   line-height: 0.78;
   letter-spacing: -0.035em;
+}
+
+@media (max-width: 959px) {
+  .masthead {
+    color: var(--pearl);
+    background-color: rgb(30 24 36 / 55%);
+  }
 }
 
 
@@ -529,7 +550,7 @@ fieldset {
 
 .essay-a .drop-cap > p:first-child::first-letter {
   font-family: var(--display);
-  font-weight: 560;
+  font-weight: 520;
   float: left;
   font-size: 4.5rem;
   line-height: 0.75;
@@ -551,8 +572,7 @@ fieldset {
   height: 100svh;
   max-height: 100svh;
   overflow: hidden;
-  padding-top: 4.6rem;
-  padding-bottom: 0.75rem;
+  padding: 4.6rem var(--pad) 0.75rem;
 }
 
 .reserve-form {
@@ -929,7 +949,7 @@ fieldset {
     display: grid;
     grid-template-columns: repeat(16, minmax(0, 1fr));
     align-items: center;
-    min-height: 88svh;
+    min-height: 64svh;
   }
 
   .carte-excerpt-inner {
@@ -957,7 +977,7 @@ fieldset {
     display: grid;
     grid-template-columns: repeat(16, minmax(0, 1fr));
     align-items: end;
-    min-height: 78svh;
+    min-height: 56svh;
   }
 
   .journal-num {
@@ -974,7 +994,7 @@ fieldset {
     display: grid;
     grid-template-columns: repeat(16, minmax(0, 1fr));
     align-items: center;
-    min-height: 72svh;
+    min-height: 52svh;
   }
 
   .reserve-invite-copy {

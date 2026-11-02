@@ -105,6 +105,51 @@ test("home page content works without JavaScript", async ({ browser }) => {
   await ctx.close();
 });
 
+test("contents dialog closes on Escape and returns focus to Menu", async ({ page }) => {
+  await page.goto("/");
+  const menu = page.getByRole("button", { name: "Menu" });
+  await menu.click();
+  const dialog = page.getByRole("dialog", { name: "Contents" });
+  await expect(dialog).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(dialog).toBeHidden();
+  await expect(menu).toBeFocused();
+});
+
+test("reserve keeps a side gutter at 390", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/reserve");
+  const box = await page.locator(".reserve-body").boundingBox();
+  expect(box).toBeTruthy();
+  expect(box!.x).toBeGreaterThan(12);
+  expect(390 - (box!.x + box!.width)).toBeGreaterThan(12);
+});
+
+test("the display face replaces Times once it has loaded", async ({ browser }) => {
+  for (const path of ["/the-carte", "/people"]) {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    await page.goto(path);
+    const distinct = await page.evaluate(async () => {
+      await document.fonts.ready;
+      const heading = document.querySelector("h1");
+      if (!heading) return false;
+      const family = getComputedStyle(heading).fontFamily;
+      const canvas = document.createElement("canvas");
+      const context2d = canvas.getContext("2d");
+      if (!context2d) return false;
+      const sample = heading.textContent ?? "Nacre";
+      context2d.font = `520 64px ${family}`;
+      const withFace = context2d.measureText(sample).width;
+      context2d.font = '520 64px "Times New Roman", Times, serif';
+      const times = context2d.measureText(sample).width;
+      return Math.abs(withFace - times) > 1;
+    });
+    expect(distinct, path).toBe(true);
+    await context.close();
+  }
+});
+
 test("reduced motion removes the cover rise", async ({ browser }) => {
   const ctx = await browser.newContext({ reducedMotion: "reduce" });
   const page = await ctx.newPage();
