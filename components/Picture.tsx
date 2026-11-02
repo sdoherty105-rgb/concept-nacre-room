@@ -1,5 +1,5 @@
 const frames = {
-  cover: { widths: [800, 864], width: 864, height: 1152 },
+  cover: { widths: [640, 864], width: 864, height: 1152 },
   colour: { widths: [864], width: 864, height: 1152 },
   shears: { widths: [840], width: 840, height: 1120 },
   bottles: { widths: [840], width: 840, height: 1120 },
@@ -24,6 +24,24 @@ export function Picture({ name, alt, sizes, priority = false, className }: Props
   const frame = frames[name];
   const src = (width: number, ext: string) => `/media/${name}-${width}.${ext}`;
   const last = frame.widths[frame.widths.length - 1];
+  if (priority) {
+    const avif = frame.widths.map((w) => `${src(w, "avif")} ${w}w`).join(", ");
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        className={className}
+        src={src(frame.widths[0], "avif")}
+        srcSet={avif}
+        sizes={sizes}
+        alt={alt}
+        width={frame.width}
+        height={frame.height}
+        decoding="async"
+        fetchPriority="high"
+        loading="eager"
+      />
+    );
+  }
   return (
     <picture className={className}>
       <source type="image/avif" srcSet={frame.widths.map((w) => `${src(w, "avif")} ${w}w`).join(", ")} sizes={sizes} />

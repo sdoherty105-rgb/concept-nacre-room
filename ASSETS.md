@@ -10,7 +10,7 @@ Made on 2 November 2026 with the Cursor image generator, then resized locally wi
 
 | Delivery name | Source master | What it shows | Used for |
 | --- | --- | --- | --- |
-| `cover-800`, `cover-864` | `assets/source/cover-portrait.jpg` | Dark hair in motion, seen from behind | Cover, contents thumbnail |
+| `cover-640`, `cover-864` | `assets/source/cover-portrait.jpg` | Dark hair in motion, seen from behind | Cover. 640 is the mobile candidate, 864 the desktop one |
 | `colour-864` | `assets/source/colour-braid.jpg` | Chestnut braid with one rose ribbon, no face | Colour spread, contents thumbnail |
 | `shears-840` | `assets/source/still-shears.jpg` | Shears, two brushes, a lock of hair on linen | Care cluster, contents thumbnail |
 | `bottles-840` | `assets/source/still-bottles.jpg` | Three unlabelled frosted bottles and a dish of oil | Care cluster, contents thumbnail |
@@ -31,11 +31,12 @@ The pictures are original generations for this concept. There is no third-party 
 | Font | File | Source | Licence |
 | --- | --- | --- | --- |
 | Bodoni Moda variable, roman (weight 400 to 900, optical size 6 to 96) | `app/fonts/BodoniModa-Roman.woff2` | [google/fonts](https://github.com/google/fonts) `ofl/bodonimoda`, subset with `pyftsubset` | SIL Open Font License 1.1 (`app/fonts/OFL-BodoniModa.txt`) |
+| Bodoni Moda cover cut, static (weight 560, optical size 72, glyphs for “Nacre” and “Room” only) | `app/fonts/BodoniModa-Cover.woff2`, also inlined in `app/globals.css` | Instanced from the same roman variable font with `fonttools varLib.instancer`, then subset | SIL Open Font License 1.1 |
 | Bodoni Moda variable, italic | `app/fonts/BodoniModa-Italic.woff2` | same family, not preloaded | SIL Open Font License 1.1 |
 | Jost variable, roman (weight 100 to 900) | `app/fonts/Jost-Roman.woff2` | [google/fonts](https://github.com/google/fonts) `ofl/jost`, subset with `pyftsubset` | SIL Open Font License 1.1 (`app/fonts/OFL-Jost.txt`) |
 | Jost variable, italic | `app/fonts/Jost-Italic.woff2` | same family, not preloaded | SIL Open Font License 1.1 |
 
-Fonts are loaded through `next/font/local` with `font-display: optional` and are not preloaded. On a fast connection the webfont is used. On a slow one the size-adjusted fallback paints immediately and is not swapped in late, which keeps the cover's largest paint inside the performance budget. The cover photograph is preloaded. Fallback metrics use `adjustFontFallback` (`Times New Roman` for Bodoni, `Arial` for Jost).
+The cover masthead uses the static Bodoni cut, inlined in CSS, so those glyphs are in the first response. The variable faces load through `next/font/local` with `font-display: optional` and are not preloaded. The cover photograph is preloaded at 640 and 864 pixels wide. Fallback metrics use `adjustFontFallback` (`Times New Roman` for Bodoni, `Arial` for Jost).
 
 ## Mark
 

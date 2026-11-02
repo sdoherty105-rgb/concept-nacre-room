@@ -16,9 +16,10 @@ export function HomeIssue() {
   return (
     <>
       <section className="cover spread" id="cover" data-layout="cover">
-        <h1 className="masthead rise">
-          <span>Nacre</span>
-          <span>Room</span>
+        <h1 className="masthead">
+          Nacre
+          <br />
+          Room
         </h1>
         <div className="cover-photo">
           <Picture

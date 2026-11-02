@@ -66,6 +66,18 @@ test("concept label sits in the first viewport at 390 and 1440", async ({ page }
   }
 });
 
+test("the old first-visit route redirects permanently to the reservation", async ({ request, page }) => {
+  const res = await request.get("/first-visit", { maxRedirects: 0 });
+  expect([301, 308]).toContain(res.status());
+  expect(res.headers()["location"] ?? "").toMatch(/\/reserve$/);
+
+  const followed = await page.goto("/first-visit");
+  expect(followed?.status()).toBe(200);
+  expect(page.url()).toMatch(/\/reserve$/);
+  expect(followed?.headers()["x-robots-tag"]).toMatch(/noindex/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(/Which practice/);
+});
+
 test("robots.txt disallows everything", async ({ request }) => {
   const res = await request.get("/robots.txt");
   expect(res.status()).toBe(200);
@@ -97,7 +109,7 @@ test("reduced motion removes the cover rise", async ({ browser }) => {
   const ctx = await browser.newContext({ reducedMotion: "reduce" });
   const page = await ctx.newPage();
   await page.goto("/");
-  const name = await page.locator(".masthead span").first().evaluate((el) => getComputedStyle(el).animationName);
+  const name = await page.locator(".clip-once").first().evaluate((el) => getComputedStyle(el).animationName);
   expect(name).toBe("none");
   await ctx.close();
 });
