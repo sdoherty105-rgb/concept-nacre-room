@@ -32,9 +32,9 @@ const body = localFont({
   weight: "100 900",
   style: "normal",
   variable: "--font-body",
-  display: "optional",
+  display: "swap",
   adjustFontFallback: "Arial",
-  preload: false,
+  preload: true,
   fallback: ["Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
 });
 
