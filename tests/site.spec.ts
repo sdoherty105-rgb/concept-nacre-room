@@ -2,6 +2,7 @@ import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 const CONCEPT_URL = "https://offshiftstudio.com.au/concepts/nacre-room";
+const ENQUIRY_URL = "https://offshiftstudio.com.au/?concept=nacre-room#contact";
 const pages = [
   { path: "/", h1: /Nacre\s*Room/i, status: 200 },
   { path: "/the-carte", h1: /The carte/i, status: 200 },
@@ -31,13 +32,27 @@ for (const p of pages) {
       expect(content).toMatch(/nofollow/);
     });
 
-    test("shows the visible concept label linking to the studio", async ({ page }) => {
+    test("shows the fictional disclosure, the return link and the enquiry link", async ({ page }) => {
       await page.goto(p.path);
-      const label = page.getByTestId("concept-label").getByRole("link", {
-        name: "An OFF/SHIFT concept, fictional demonstration",
-      });
-      await expect(label).toBeVisible();
-      await expect(label).toHaveAttribute("href", CONCEPT_URL);
+      const slip = page.getByTestId("concept-label");
+      await expect(slip).toContainText(/fictional/i);
+      await expect(slip).toContainText(/Not a real salon/);
+      const back = slip.getByRole("link", { name: "Back to the concept" });
+      await expect(back).toBeVisible();
+      await expect(back).toHaveAttribute("href", CONCEPT_URL);
+      const cta = slip.getByRole("link", { name: "Want a website like this?" });
+      await expect(cta).toBeVisible();
+      await expect(cta).toHaveAttribute("href", ENQUIRY_URL);
+      const footer = page.getByRole("contentinfo");
+      await expect(footer.getByRole("link", { name: "Want a website like this?" })).toHaveAttribute("href", ENQUIRY_URL);
+      await expect(footer.getByRole("link", { name: "Back to the concept" })).toHaveAttribute("href", CONCEPT_URL);
+    });
+
+    test("has no horizontal overflow at 320", async ({ page }) => {
+      await page.setViewportSize({ width: 320, height: 640 });
+      await page.goto(p.path);
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+      expect(overflow).toBeLessThanOrEqual(0);
     });
 
     test("has no WCAG 2.2 AA violations detectable by axe", async ({ page }) => {
@@ -50,7 +65,7 @@ for (const p of pages) {
   });
 }
 
-test("concept label sits in the first viewport at 390 and 1440", async ({ page }) => {
+test("showroom slip sits in the first viewport at 390 and 1440", async ({ page }) => {
   for (const viewport of [
     { width: 390, height: 844 },
     { width: 1440, height: 900 },
@@ -58,7 +73,7 @@ test("concept label sits in the first viewport at 390 and 1440", async ({ page }
     await page.setViewportSize(viewport);
     for (const path of ["/", "/the-carte", "/people", "/journal", "/reserve"]) {
       await page.goto(path);
-      const box = await page.getByTestId("concept-label").boundingBox();
+      const box = await page.getByTestId("concept-cta").boundingBox();
       expect(box, path).toBeTruthy();
       expect(box!.y).toBeGreaterThanOrEqual(0);
       expect(box!.y + box!.height).toBeLessThanOrEqual(viewport.height + 1);
@@ -114,6 +129,37 @@ test("contents dialog closes on Escape and returns focus to Menu", async ({ page
   await page.keyboard.press("Escape");
   await expect(dialog).toBeHidden();
   await expect(menu).toBeFocused();
+});
+
+test("choosing a spread in the contents moves focus there, not back to the top", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Menu" }).click();
+  await page.getByRole("dialog", { name: "Contents" }).getByRole("link", { name: /Care/ }).click();
+  await expect(page.getByRole("dialog", { name: "Contents" })).toBeHidden();
+  await expect(page.locator("#care")).toBeFocused();
+  await expect(page.locator("#care")).toBeInViewport();
+});
+
+test("Tab stays inside the open contents overlay", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Menu" }).click();
+  const dialog = page.getByRole("dialog", { name: "Contents" });
+  for (let i = 0; i < 14; i += 1) {
+    await page.keyboard.press("Tab");
+    const inside = await dialog.evaluate((el) => el.contains(document.activeElement) || document.activeElement === document.body);
+    expect(inside).toBe(true);
+  }
+});
+
+test("a price line on the cover's contents opens the reservation at that ritual", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  await page.locator("#contents").getByRole("link", { name: /Blow-wave/ }).click();
+  await page.waitForURL(/\/reserve\?service=blow-wave/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(/Which ritual/);
+  await expect(page.getByRole("radio", { name: /Blow-wave/ })).toBeChecked();
+  await expect(page.getByTestId("total-price")).toHaveText("$70");
 });
 
 test("reserve keeps a side gutter at 390", async ({ page }) => {
@@ -238,8 +284,8 @@ test.describe("booking form (demo only)", () => {
     await expect(success).toContainText("not sent");
     expect(page.url()).toBe(urlBefore);
     expect(navigations).toEqual([]);
-    expect(requests.filter((r) => !r.startsWith("GET"))).toEqual([]);
-    expect(requests.filter((r) => /\b(fetch|xhr|websocket|ping|eventsource)\b/.test(r))).toEqual([]);
+    // Nothing at all leaves the page when the demo request is made.
+    expect(requests).toEqual([]);
   });
 
   test("validates on the client with clear, linked errors", async ({ page }) => {
