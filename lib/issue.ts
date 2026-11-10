@@ -1,6 +1,7 @@
 import { stylists, type CategoryId } from "./services";
 
 export const CONCEPT_URL = "https://offshiftstudio.com.au/concepts/nacre-room";
+export const ENQUIRY_URL = "https://offshiftstudio.com.au/?concept=nacre-room#contact";
 
 export type ContentsEntry = {
   n: string;

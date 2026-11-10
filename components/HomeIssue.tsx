@@ -36,6 +36,9 @@ export function HomeIssue() {
           <p>A room for hair, colour and quiet. Marlowe Cove, in fiction.</p>
           <ol className="issue-toc">
             <li>
+              <Link href="#contents">Prices</Link>
+            </li>
+            <li>
               <Link href="#colour">Colour</Link>
             </li>
             <li>
@@ -43,9 +46,6 @@ export function HomeIssue() {
             </li>
             <li>
               <Link href="#care">Care</Link>
-            </li>
-            <li>
-              <Link href="/the-carte">The carte</Link>
             </li>
           </ol>
         </div>
@@ -56,7 +56,7 @@ export function HomeIssue() {
         <div className="ox-panel">
           <p className="kicker">The front of the issue</p>
           <h2>Contents</h2>
-          <p>Services sit here the way a magazine lists its pages. The figures are demonstration prices, before any add-on.</p>
+          <p>Services sit here the way a magazine lists its pages. Choose a line to reserve it. The figures are demonstration prices, before any add-on.</p>
         </div>
         <div className="contents-main">
           <DemoNote kind="prices" />
@@ -146,31 +146,6 @@ export function HomeIssue() {
             sizes="(max-width: 959px) 92vw, 40vw"
             alt="A matte cream basin on a plaster ledge, with a linen cloth and a hairpin."
           />
-        </div>
-      </section>
-
-      <section className="carte-excerpt spread" data-layout="carte-excerpt">
-        <div className="carte-excerpt-inner">
-          <p className="kicker">Page 10</p>
-          <h2>
-            The <span className="accent">carte</span>
-          </h2>
-          <p>One narrow list, the way a menu is printed. Add-ons sit on top of these figures.</p>
-          <DemoNote kind="prices" />
-          <ul className="from-index">
-            {categories.map((category) => (
-              <li key={category.id}>
-                <div className="leader-main">
-                  <span className="leader-name">{category.name}</span>
-                  <span className="leader-dots" aria-hidden="true" />
-                  <span className="leader-price">from {formatPrice(fromPrice(category.id))}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <Link className="text-link" href="/the-carte">
-            Open the carte
-          </Link>
         </div>
       </section>
 

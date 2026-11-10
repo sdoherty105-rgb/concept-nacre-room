@@ -1,6 +1,11 @@
 .spread {
+  --spread-y: 3.25rem;
   position: relative;
-  padding: 4.5rem var(--pad);
+  padding: var(--spread-y) var(--pad);
+}
+
+.spread:focus {
+  outline: none;
 }
 
 .spread::before {
@@ -133,8 +138,30 @@ fieldset {
 }
 
 .imprint {
+  display: grid;
+  gap: 0.1rem;
   font-size: 0.95rem;
+  line-height: 1.45;
   padding-top: 0.8rem;
+}
+
+.imprint-links,
+.colophon-studio-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.25rem;
+}
+
+.imprint-links a,
+.colophon-studio-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+}
+
+.imprint-cta {
+  color: var(--oxblood);
+  font-weight: 500;
 }
 
 .demo-note {
@@ -149,56 +176,46 @@ fieldset {
   color: var(--pearl);
 }
 
+/* Mobile cover: masthead on pearl, a cropped cover photograph, then the issue line and the
+   showroom slip, all inside the first screen so the prices start one swipe down. */
 .cover {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  height: 100svh;
-  min-height: 100svh;
-  padding: 0;
+  padding: 3.6rem 0 0;
   overflow: hidden;
   background: var(--pearl);
 }
 
 .cover-photo {
-  position: absolute;
-  inset: 0;
+  position: relative;
 }
 
 .cover-photo picture,
 .cover-photo img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: clamp(14rem, 42svh, 26rem);
   object-fit: cover;
-  object-position: center top;
+  object-position: center 18%;
 }
 
 .masthead {
   position: relative;
   z-index: 2;
-  margin: 7vh 0 0;
+  margin: 0;
   font-family: NacreCover, Georgia, serif;
   font-weight: 520;
-  padding: 0 var(--pad);
-  font-size: clamp(4.6rem, 22vw, 8rem);
-  line-height: 0.78;
+  padding: 0.2rem var(--pad) 0.85rem;
+  font-size: clamp(4.2rem, 21vw, 8rem);
+  line-height: 0.8;
   letter-spacing: -0.035em;
-}
-
-@media (max-width: 959px) {
-  .masthead {
-    color: var(--pearl);
-    background-color: rgb(30 24 36 / 55%);
-  }
 }
 
 
 .issue-line {
   position: relative;
   z-index: 2;
-  margin-top: auto;
-  padding: 0.9rem var(--pad) 0.2rem;
+  padding: 0.8rem var(--pad) 0.1rem;
   background: var(--pearl);
 }
 
@@ -214,7 +231,7 @@ fieldset {
   position: relative;
   z-index: 2;
   margin: 0;
-  padding: 0.35rem var(--pad) 0.85rem;
+  padding: 0.2rem var(--pad) 0.6rem;
   background: var(--pearl);
 }
 
@@ -227,8 +244,8 @@ fieldset {
 .ox-panel {
   background: var(--oxblood);
   color: var(--pearl);
-  margin: -4.5rem calc(-1 * var(--pad)) 1.5rem;
-  padding: 4.5rem var(--pad) 2rem;
+  margin: calc(-1 * var(--spread-y)) calc(-1 * var(--pad)) 1.25rem;
+  padding: 2.25rem var(--pad) 1.6rem;
 }
 
 .ox-panel h2,
@@ -262,6 +279,29 @@ fieldset {
   display: flex;
   align-items: baseline;
   gap: 0.55rem;
+}
+
+.leader-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.leader-link:hover .leader-name,
+.leader-link:focus-visible .leader-name {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.leader-link .leader-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.leader-book {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }
 
 .leader-page {
@@ -310,14 +350,12 @@ fieldset {
 }
 
 .carte-group ul,
-.from-index,
 .name-list {
   list-style: none;
   padding: 0;
 }
 
 .carte-group li,
-.from-index li,
 .name-list li {
   padding: 0.7rem 0;
   border-top: 1px solid currentColor;
@@ -332,9 +370,12 @@ fieldset {
   font-size: 1rem;
 }
 
+.carte-index li {
+  padding: 0.55rem 0;
+}
+
 .contents-jump,
-.carte-group .text-link,
-.from-index + .text-link {
+.carte-group .text-link {
   display: inline-block;
   margin-top: 0.8rem;
 }
@@ -342,7 +383,6 @@ fieldset {
 .colour-copy,
 .cut-note,
 .care-copy,
-.carte-excerpt-inner,
 .people-index-copy,
 .journal-copy,
 .reserve-invite-copy,
@@ -358,15 +398,13 @@ fieldset {
 .colour-copy h2,
 .cut-note h2,
 .care-copy h2,
-.carte-excerpt h2,
 .people-index h2,
 .journal-copy h2,
 .reserve-invite h2,
 .visit-note h2,
 .profile-copy h2,
 .essay h2,
-.opener h1,
-.carte-excerpt h2 {
+.opener h1 {
   font-size: clamp(2.6rem, 8vw, 5.2rem);
 }
 
@@ -380,13 +418,37 @@ fieldset {
   margin-top: 1.2rem;
 }
 
-.care-bottles {
-  width: 74%;
-  margin-left: auto;
+/* Mobile care: the shears lead, then the bottles and the basin share one row. */
+.care {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 0.75rem;
+}
+
+.care-copy,
+.care-shears {
+  grid-column: 1 / -1;
 }
 
 .care-shears {
   width: 92%;
+}
+
+.care-bottles picture,
+.care-basin picture,
+.care-bottles img,
+.care-basin img {
+  height: 100%;
+}
+
+.care-bottles img,
+.care-basin img {
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.care-basin {
+  margin-top: 2.5rem;
 }
 
 .cut {
@@ -401,6 +463,10 @@ fieldset {
 
 .cut-quote p {
   margin: 0;
+}
+
+.cut-quote {
+  margin-bottom: 1.75rem;
 }
 
 .cut-band {
@@ -518,15 +584,38 @@ fieldset {
   font-weight: 520;
 }
 
+.colophon-pages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1rem;
+}
+
+.colophon-pages a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.colophon-studio {
+  margin-top: 0.6rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--ink);
+}
+
+.colophon-studio .kicker {
+  margin-bottom: 0.2rem;
+}
+
 .opener {
-  min-height: 100svh;
   display: flex;
   flex-direction: column;
-  padding-top: 5.5rem;
+  padding-top: 4.75rem;
 }
 
 .opener .imprint {
-  margin-top: auto;
+  margin-top: 1.25rem;
 }
 
 .opener-figure,
@@ -740,6 +829,11 @@ fieldset {
 }
 
 @media (min-width: 960px) {
+  .spread {
+    --spread-y: 5rem;
+  }
+
+  /* The fold sits under the page: pictures and pasted-up copy cover it, text never sits on it. */
   .spread::before {
     content: "";
     position: absolute;
@@ -750,7 +844,26 @@ fieldset {
     background: var(--ink);
     opacity: 0.28;
     pointer-events: none;
-    z-index: 3;
+    z-index: 0;
+  }
+
+  .spread > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .carte-page::before,
+  .essay::before {
+    content: none;
+  }
+
+  .opener {
+    min-height: 100svh;
+    padding-top: 5.5rem;
+  }
+
+  .opener .imprint {
+    margin-top: auto;
   }
 
   .ink-spread::before {
@@ -883,7 +996,7 @@ fieldset {
     grid-template-columns: repeat(16, minmax(0, 1fr));
     grid-template-rows: auto auto;
     align-items: center;
-    min-height: 100svh;
+    row-gap: 2.5rem;
   }
 
   .cut-band {
@@ -892,13 +1005,15 @@ fieldset {
     grid-row: 1 / 3;
     background: var(--oxblood);
     align-self: stretch;
-    margin: -4.5rem 0;
+    margin: calc(-1 * var(--spread-y)) 0;
+    z-index: 0;
   }
 
   .cut-quote {
     grid-column: 2 / 16;
     grid-row: 1;
     z-index: 1;
+    margin: 0;
     font-size: clamp(3rem, 4.8vw, 5.3rem);
   }
 
@@ -914,7 +1029,6 @@ fieldset {
     grid-template-columns: repeat(16, minmax(0, 1fr));
     grid-template-rows: auto auto auto;
     gap: 1.2rem 1rem;
-    min-height: 100svh;
     align-items: start;
   }
 
@@ -938,6 +1052,11 @@ fieldset {
     margin: 3rem 0 0;
   }
 
+  .care-bottles img,
+  .care-basin img {
+    aspect-ratio: auto;
+  }
+
   .care-basin {
     grid-column: 6 / 14;
     grid-row: 3;
@@ -945,27 +1064,15 @@ fieldset {
     margin: 0;
   }
 
-  .carte-excerpt {
-    display: grid;
-    grid-template-columns: repeat(16, minmax(0, 1fr));
-    align-items: center;
-    min-height: 64svh;
-  }
-
-  .carte-excerpt-inner {
-    grid-column: 2 / 9;
-  }
-
   .people-index {
     display: grid;
     grid-template-columns: repeat(16, minmax(0, 1fr));
     align-items: center;
-    min-height: 100svh;
     gap: 1rem;
   }
 
   .people-index-copy {
-    grid-column: 1 / 9;
+    grid-column: 1 / 8;
   }
 
   .people-index-photo {
@@ -977,7 +1084,7 @@ fieldset {
     display: grid;
     grid-template-columns: repeat(16, minmax(0, 1fr));
     align-items: end;
-    min-height: 56svh;
+    padding-top: 0;
   }
 
   .journal-num {
@@ -986,7 +1093,7 @@ fieldset {
   }
 
   .journal-copy {
-    grid-column: 8 / 16;
+    grid-column: 10 / 16;
     padding-bottom: 1rem;
   }
 
@@ -994,11 +1101,11 @@ fieldset {
     display: grid;
     grid-template-columns: repeat(16, minmax(0, 1fr));
     align-items: center;
-    min-height: 52svh;
+    padding-top: 0;
   }
 
   .reserve-invite-copy {
-    grid-column: 3 / 15;
+    grid-column: 2 / 8;
   }
 
   .visit {
@@ -1006,7 +1113,6 @@ fieldset {
     grid-template-columns: repeat(16, minmax(0, 1fr));
     gap: 2rem;
     align-items: center;
-    min-height: 88svh;
   }
 
   .visit-note {

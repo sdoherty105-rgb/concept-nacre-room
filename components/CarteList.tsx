@@ -18,23 +18,33 @@ export function CarteList({ variant }: { variant: "full" | "index" }) {
             <ul>
               {rows.map((service) => (
                 <li key={service.id} id={variant === "full" ? service.id : undefined}>
-                  <div className="leader-main">
-                    {variant === "index" ? <span className="leader-page">{categoryPage[category.id]}</span> : null}
-                    <span className="leader-name">{service.name}</span>
-                    <span className="leader-dots" aria-hidden="true" />
-                    <span className="leader-price">
-                      {variant === "index" ? `from ${formatPrice(service.price)}` : formatPrice(service.price)}
-                    </span>
-                  </div>
                   {variant === "full" ? (
                     <>
+                      <div className="leader-main">
+                        <span className="leader-name">{service.name}</span>
+                        <span className="leader-dots" aria-hidden="true" />
+                        <span className="leader-price">{formatPrice(service.price)}</span>
+                      </div>
                       <p className="leader-meta">{joinMeta(formatDuration(service.minutes), service.description)}</p>
                       <Link className="text-link" href={`/reserve?service=${service.id}`}>
                         Plan this: {service.name}
                       </Link>
                     </>
                   ) : (
-                    <p className="leader-meta">{formatDuration(service.minutes)}</p>
+                    <Link className="leader-link" href={`/reserve?service=${service.id}`}>
+                      <span className="leader-main">
+                        <span className="leader-page" aria-hidden="true">
+                          {categoryPage[category.id]}
+                        </span>
+                        <span className="leader-name">{service.name}</span>
+                        <span className="leader-dots" aria-hidden="true" />
+                        <span className="leader-price">from {formatPrice(service.price)}</span>
+                      </span>
+                      <span className="leader-meta">
+                        {formatDuration(service.minutes)}
+                        <span className="leader-book">Reserve</span>
+                      </span>
+                    </Link>
                   )}
                 </li>
               ))}
