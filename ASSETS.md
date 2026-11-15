@@ -10,7 +10,7 @@ Made on 2 November 2026 with the Cursor image generator, then resized locally wi
 
 | Delivery name | Source master | What it shows | Used for |
 | --- | --- | --- | --- |
-| `cover-640`, `cover-864` | `assets/source/cover-portrait.jpg` | Dark hair in motion, seen from behind | Cover. 640 is the mobile candidate, 864 the desktop one |
+| `cover-640`, `cover-768`, `cover-864` | `assets/source/cover-portrait.jpg` | Dark hair in motion, seen from behind | Cover. 640 and 768 are the small-screen candidates (768 is encoded a step tighter, at the size a phone actually paints), 864 the desktop one |
 | `colour-864` | `assets/source/colour-braid.jpg` | Chestnut braid with one rose ribbon, no face | Colour spread, contents thumbnail |
 | `shears-840` | `assets/source/still-shears.jpg` | Shears, two brushes, a lock of hair on linen | Care cluster, contents thumbnail |
 | `bottles-840` | `assets/source/still-bottles.jpg` | Three unlabelled frosted bottles and a dish of oil | Care cluster, contents thumbnail |
@@ -36,7 +36,7 @@ The pictures are original generations for this concept. There is no third-party 
 | Jost variable, roman (weight 100 to 900) | `app/fonts/Jost-Roman.woff2` | [google/fonts](https://github.com/google/fonts) `ofl/jost`, subset with `pyftsubset` | SIL Open Font License 1.1 (`app/fonts/OFL-Jost.txt`) |
 | Jost variable, italic | `app/fonts/Jost-Italic.woff2` | same family, not preloaded | SIL Open Font License 1.1 |
 
-The cover masthead uses the static Bodoni cut at weight 520, inlined in CSS, so those glyphs match the display headings and do not wait on a second request. The variable roman is preloaded with `font-display: swap` and a size-adjusted Times fallback, so the other pages replace the fallback once the file arrives. Italics and Jost stay optional or unpreloaded. The cover photograph is preloaded at 640 and 864 pixels wide.
+The cover masthead uses the static Bodoni cut at weight 520, inlined in CSS, so those glyphs match the display headings and do not wait on a second request. The variable roman is preloaded with `font-display: swap` and a size-adjusted Times fallback, so the other pages replace the fallback once the file arrives. Italics and Jost italic stay unpreloaded. On the cover, the italic face is attached after the photograph has painted, so that file does not compete with the cover. The cover photograph is preloaded at 640, 768 and 864 pixels wide.
 
 ## Mark
 

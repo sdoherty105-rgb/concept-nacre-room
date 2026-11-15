@@ -4,7 +4,7 @@ import sharp from "sharp";
 import { readdirSync, statSync } from "node:fs";
 
 const jobs = [
-  ["cover-portrait.jpg", "cover", [800, 864]],
+  ["cover-portrait.jpg", "cover", [640, 768, 864]],
   ["colour-braid.jpg", "colour", [864]],
   ["still-shears.jpg", "shears", [840]],
   ["still-bottles.jpg", "bottles", [840]],
@@ -19,7 +19,8 @@ for (const [file, name, widths] of jobs) {
   const input = `assets/source/${file}`;
   for (const width of widths) {
     const pipeline = () => sharp(input).rotate().resize({ width, withoutEnlargement: true });
-    await pipeline().avif({ quality: name === "cover" ? 44 : 42, effort: 6 }).toFile(`public/media/${name}-${width}.avif`);
+    const avifQuality = name === "cover" && width === 768 ? 34 : name === "cover" ? 44 : 42;
+    await pipeline().avif({ quality: avifQuality, effort: 6 }).toFile(`public/media/${name}-${width}.avif`);
     await pipeline().webp({ quality: 62 }).toFile(`public/media/${name}-${width}.webp`);
   }
   const thumb = () => sharp(input).rotate().resize({ width: 240, withoutEnlargement: true });

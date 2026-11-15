@@ -106,6 +106,37 @@ test("static assets also carry noindex", async ({ request }) => {
   expect(res.headers()["x-robots-tag"]).toMatch(/noindex/);
 });
 
+test("the cover paints before the italic face is requested", async ({ page }) => {
+  const requested: string[] = [];
+  page.on("request", (request) => requested.push(request.url()));
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  const italicUrls = await page.evaluate(() => {
+    const urls: string[] = [];
+    for (const sheet of document.styleSheets) {
+      let rules: CSSRuleList;
+      try {
+        rules = sheet.cssRules;
+      } catch {
+        continue;
+      }
+      for (const rule of rules) {
+        if (!(rule instanceof CSSFontFaceRule)) continue;
+        if (!/italic/i.test(rule.style.fontStyle)) continue;
+        if (!/display/i.test(rule.style.fontFamily)) continue;
+        const src = rule.style.getPropertyValue("src");
+        const match = src.match(/url\("([^"]+)"\)/);
+        if (match) urls.push(new URL(match[1], location.href).href);
+      }
+    }
+    return urls;
+  });
+  expect(italicUrls.length).toBeGreaterThan(0);
+  expect(requested.filter((url) => italicUrls.some((italic) => url.split("?")[0] === italic.split("?")[0]))).toEqual([]);
+  await expect(page.locator("html")).not.toHaveClass(/issue-italic/);
+  await page.waitForFunction(() => document.documentElement.classList.contains("issue-italic"));
+  await expect(page.locator(".cut-quote em")).toHaveCSS("font-style", "italic");
+});
+
 test("home page content works without JavaScript", async ({ browser }) => {
   const ctx = await browser.newContext({ javaScriptEnabled: false });
   const page = await ctx.newPage();

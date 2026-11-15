@@ -165,9 +165,15 @@ textarea {
 
 em.accent,
 .cut-quote em {
-  font-family: var(--display-italic);
   font-style: italic;
   font-weight: 520;
+}
+
+/* The italic face is the same Bodoni as the headlines. It is applied after the cover
+   has painted so its file does not queue behind the cover photograph. */
+html.issue-italic em.accent,
+html.issue-italic .cut-quote em {
+  font-family: var(--display-italic);
 }
 
 .prose em,

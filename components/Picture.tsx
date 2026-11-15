@@ -1,5 +1,5 @@
 const frames = {
-  cover: { widths: [640, 864], width: 864, height: 1152 },
+  cover: { widths: [640, 768, 864], width: 864, height: 1152 },
   colour: { widths: [864], width: 864, height: 1152 },
   shears: { widths: [840], width: 840, height: 1120 },
   bottles: { widths: [840], width: 840, height: 1120 },
@@ -36,7 +36,7 @@ export function Picture({ name, alt, sizes, priority = false, className }: Props
         alt={alt}
         width={frame.width}
         height={frame.height}
-        decoding="async"
+        decoding="sync"
         fetchPriority="high"
         loading="eager"
       />

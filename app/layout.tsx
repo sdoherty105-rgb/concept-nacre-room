@@ -70,6 +70,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-AU" className={`${display.variable} ${displayItalic.variable} ${body.variable} ${bodyItalic.variable}`}>
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var root=document.documentElement;function arm(){root.classList.add("issue-italic")}if(location.pathname!=="/"){arm();return}var timer;function later(){clearTimeout(timer);timer=setTimeout(arm,80)}try{new PerformanceObserver(later).observe({type:"largest-contentful-paint",buffered:true})}catch(e){}addEventListener("load",later)})();`,
+          }}
+        />
+        <noscript>
+          <style>{`em.accent,.cut-quote em{font-family:var(--display-italic)}`}</style>
+        </noscript>
         <a href="#main" className="skip-link">
           Skip to content
         </a>
