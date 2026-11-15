@@ -298,14 +298,13 @@ export function Planner() {
                     onChange={(event) => setField("date", event.target.value)}
                   />
                 </div>
-                <div className="choice-list" id="field-window" role="group" aria-labelledby="time-label">
+                <div className="choice-list" id="field-window" role="group" aria-labelledby="time-label" tabIndex={-1}>
                   <p id="time-label" className="field-label">
                     Preferred time
                   </p>
                   {timeWindows.map((slot) => (
                     <label key={slot.value} className="choice">
                       <input
-                        id={values.window === slot.value ? "field-window" : undefined}
                         type="radio"
                         name="window"
                         value={slot.value}

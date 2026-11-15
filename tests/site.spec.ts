@@ -352,6 +352,10 @@ test.describe("booking form (demo only)", () => {
     await page.getByRole("radio", { name: /Evening/ }).check();
     await page.getByRole("button", { name: "Continue" }).click();
     await expect(page.locator(".error-summary")).toContainText("Thursdays only");
+    // N1: one element owns the error-link target, and the link moves focus to that group.
+    await expect(page.locator("#field-window")).toHaveCount(1);
+    await page.locator(".error-summary").getByRole("link", { name: /Thursdays only/ }).click();
+    await expect(page.locator("#field-window")).toBeFocused();
   });
 });
 
