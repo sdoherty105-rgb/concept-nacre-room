@@ -31,7 +31,7 @@ export function HomeIssue() {
         </div>
         <div className="issue-line">
           <p className="kicker">
-            Issue <span className="accent">01</span>
+            Issue <span className="accent">one</span>
           </p>
           <p>A room for hair, colour and quiet. Marlowe Cove, in fiction.</p>
           <ol className="issue-toc">
@@ -79,7 +79,7 @@ export function HomeIssue() {
         </div>
         <div className="colour-copy">
           <p className="kicker">
-            Spread <span className="accent">02</span>
+            Spread <span className="accent">two</span>
           </p>
           <h2>Colour</h2>
           <p>
@@ -117,7 +117,7 @@ export function HomeIssue() {
       <section className="care spread" id="care" data-layout="spread-care">
         <div className="care-copy">
           <p className="kicker">
-            Spread <span className="accent">04</span>
+            Spread <span className="accent">four</span>
           </p>
           <h2>Care</h2>
           <p>
@@ -184,7 +184,7 @@ export function HomeIssue() {
 
       <section className="journal-opener spread" data-layout="journal-opener">
         <p className="journal-num accent" aria-hidden="true">
-          07
+          7
         </p>
         <div className="journal-copy">
           <p className="kicker">House notes</p>

@@ -11,7 +11,7 @@
   --ink: #1e1824;
   --oxblood: #8a3a4c;
   --sea: #a9c1bb;
-  --champagne: #b79c6b;
+  --champagne: #b4d3cb;
   --pad: clamp(1rem, 3vw, 2.75rem);
   --display: var(--font-display), "Times New Roman", Georgia, serif;
   --display-italic: var(--font-display-italic), "Times New Roman", Georgia, serif;
@@ -151,11 +151,12 @@ textarea {
 }
 
 .kicker {
-  font-family: var(--body);
-  font-weight: 500;
-  font-size: 0.6875rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-family: var(--body-italic);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0.005em;
+  text-transform: none;
   line-height: 1.4;
 }
 

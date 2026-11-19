@@ -70,7 +70,7 @@ export default function PeoplePage() {
       <article className="profile profile-c spread" id={sable.anchor}>
         <div className="profile-copy">
           <p className="kicker">
-            Practice <span className="accent">03</span>
+            Practice <span className="accent">three</span>
           </p>
           <h2>{sable.name}</h2>
           <p className="deck">{sable.role}</p>

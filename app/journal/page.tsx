@@ -20,7 +20,7 @@ export default function JournalPage() {
           <p className="deck">Three short essays in the voice of the room. No testimonials, no scores, no borrowed clients.</p>
         </div>
         <p className="opener-figure accent" aria-hidden="true">
-          01
+          1
         </p>
         <Imprint />
       </section>
