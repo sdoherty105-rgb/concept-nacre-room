@@ -5,7 +5,10 @@
       "startServerReadyPattern": "Ready",
       "url": [
         "http://localhost:3000/",
-        "http://localhost:3000/first-visit"
+        "http://localhost:3000/the-carte",
+        "http://localhost:3000/people",
+        "http://localhost:3000/journal",
+        "http://localhost:3000/reserve"
       ],
       "numberOfRuns": 3,
       "settings": {

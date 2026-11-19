@@ -4,6 +4,12 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   experimental: { inlineCss: true },
+  async redirects() {
+    return [
+      { source: "/first-visit", destination: "/reserve", permanent: true },
+      { source: "/first-visit/", destination: "/reserve", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {
