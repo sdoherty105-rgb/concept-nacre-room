@@ -6,7 +6,7 @@ Photographs are generated editorial studies for a fictional salon. They are not 
 
 ## Generated photographs
 
-Made on 2 November 2026 with the Cursor image generator, then resized locally with `sharp` (AVIF and WebP). Master JPEGs live in `assets/source/`. Delivery files live in `public/media/`. The same grade is used throughout: 85mm-style shallow focus, a warm pearl ground, shadows cooled toward sea glass, no text and no logos.
+Made on 2 November 2026 with an AI image generator, then resized locally with `sharp` (AVIF and WebP). Master JPEGs live in `assets/source/`. Delivery files live in `public/media/`. The same grade is used throughout: 85mm-style shallow focus, a warm pearl ground, shadows cooled toward sea glass, no text and no logos.
 
 | Delivery name | Source master | What it shows | Used for |
 | --- | --- | --- | --- |
