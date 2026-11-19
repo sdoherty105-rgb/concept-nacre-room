@@ -183,9 +183,6 @@ export function HomeIssue() {
       </section>
 
       <section className="journal-opener spread" data-layout="journal-opener">
-        <p className="journal-num accent" aria-hidden="true">
-          7
-        </p>
         <div className="journal-copy">
           <p className="kicker">House notes</p>
           <h2>Leaving the face out of the frame</h2>

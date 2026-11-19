@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { categories, services } from "@/lib/services";
-import { categoryPage } from "@/lib/issue";
 import { formatDuration, formatPrice } from "@/lib/planner";
 import { joinMeta } from "@/lib/meta";
 
@@ -33,9 +32,6 @@ export function CarteList({ variant }: { variant: "full" | "index" }) {
                   ) : (
                     <Link className="leader-link" href={`/reserve?service=${service.id}`}>
                       <span className="leader-main">
-                        <span className="leader-page" aria-hidden="true">
-                          {categoryPage[category.id]}
-                        </span>
                         <span className="leader-name">{service.name}</span>
                         <span className="leader-dots" aria-hidden="true" />
                         <span className="leader-price">from {formatPrice(service.price)}</span>
