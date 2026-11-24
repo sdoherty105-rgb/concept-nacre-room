@@ -14,16 +14,10 @@ export default function CartePage() {
     <>
       <section className="opener spread carte-open">
         <div className="opener-copy">
-          <p className="kicker">Page 10</p>
-          <h1>
-            The <span className="accent">carte</span>
-          </h1>
-          <p className="deck">A single column with dotted leaders. Read it as a printed menu. Nothing here is a live price.</p>
+          <h1>The carte</h1>
+          <p className="deck">One column with dotted leaders, set like a printed menu. Every price here is invented.</p>
           <DemoNote kind="prices" />
         </div>
-        <p className="opener-figure" aria-hidden="true">
-          12
-        </p>
         <Imprint />
       </section>
       <section className="carte-page spread" aria-labelledby="carte-list-title">

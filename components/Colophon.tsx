@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CONCEPT_URL, ENQUIRY_URL } from "@/lib/issue";
+import { CONCEPT_URL, ENQUIRY_URL, STUDIO_URL } from "@/lib/issue";
 
 export function Colophon() {
   return (
@@ -19,7 +19,13 @@ export function Colophon() {
         <Link href="/reserve">Reserve</Link>
       </nav>
       <div className="colophon-studio">
-        <p className="kicker">Made by OFF/SHIFT Studio, Perth</p>
+        <p className="footer-credit" data-footer-credit>
+          <span>Designed by</span>
+          <a href={STUDIO_URL} rel="noopener" data-testid="footer-credit">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/offshift-wordmark-dark.svg" alt="OFF/SHIFT Studio" width={88} height={24} />
+          </a>
+        </p>
         <p className="colophon-studio-links">
           <a href={ENQUIRY_URL} className="imprint-cta">
             Want a website like this?

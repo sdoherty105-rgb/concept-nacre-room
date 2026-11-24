@@ -367,3 +367,17 @@ function nextWeekday(target: number): string {
   const pad = (n: number) => String(n).padStart(2, "0");
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 }
+
+test("footer credit links to the OFF/SHIFT home page with the canonical wordmark", async ({ page, request }) => {
+  await page.goto("/");
+  const credit = page.getByRole("contentinfo").getByTestId("footer-credit");
+  await expect(credit).toHaveAttribute("href", "https://offshiftstudio.com.au");
+  await expect(credit).toHaveAttribute("rel", /noopener/);
+  const img = credit.getByRole("img", { name: "OFF/SHIFT Studio" });
+  await expect(img).toHaveAttribute("src", "/brand/offshift-wordmark-dark.svg");
+  const box = await img.boundingBox();
+  expect(box!.width).toBeGreaterThanOrEqual(72);
+  expect(box!.width).toBeLessThanOrEqual(96);
+  const served = await request.get("/brand/offshift-wordmark-dark.svg");
+  expect(served.status()).toBe(200);
+});
