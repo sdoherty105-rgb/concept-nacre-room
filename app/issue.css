@@ -128,10 +128,6 @@ button.menu-link {
   text-underline-offset: 0.08em;
 }
 
-.overlay-num {
-  min-width: 2.4em;
-}
-
 fieldset {
   border: 0;
   margin: 0;
@@ -620,6 +616,26 @@ fieldset {
   margin-bottom: 0.2rem;
 }
 
+.footer-credit {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.4rem;
+  font-size: 0.85rem;
+}
+
+.footer-credit a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.footer-credit img {
+  display: block;
+  width: 88px;
+  height: auto;
+}
+
 .opener {
   display: flex;
   flex-direction: column;
@@ -630,7 +646,6 @@ fieldset {
   margin-top: 1.25rem;
 }
 
-.opener-figure,
 .opener-photo {
   display: none;
 }
@@ -1141,7 +1156,6 @@ fieldset {
     margin-top: 0;
   }
 
-  .opener-figure,
   .opener-photo {
     display: block;
   }
@@ -1162,18 +1176,6 @@ fieldset {
     grid-row: 1;
     margin-top: 0;
     align-self: center;
-  }
-
-  .carte-open .opener-figure,
-  .journal-open .opener-figure {
-    grid-column: 10 / 16;
-    grid-row: 1;
-    align-self: center;
-    margin: 0;
-    font-family: var(--display);
-    font-size: clamp(7rem, 12vw, 11rem);
-    font-weight: 520;
-    line-height: 0.8;
   }
 
   .people-open .opener-photo {

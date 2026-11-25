@@ -15,13 +15,9 @@ export default function JournalPage() {
     <>
       <section className="opener spread journal-open">
         <div className="opener-copy">
-          <p className="kicker">Page 18</p>
           <h1>House notes</h1>
-          <p className="deck">Three short essays in the voice of the room. No testimonials, no scores, no borrowed clients.</p>
+          <p className="deck">Three short essays in the voice of the room. The site carries no testimonials or reviews.</p>
         </div>
-        <p className="opener-figure accent" aria-hidden="true">
-          1
-        </p>
         <Imprint />
       </section>
 
@@ -38,9 +34,7 @@ export default function JournalPage() {
 
       <article className="essay essay-b spread" id={gloss.slug}>
         <p className="kicker">{gloss.kicker}</p>
-        <h2>
-          A gloss is not a <em className="accent">costume</em>
-        </h2>
+        <h2>{gloss.title}</h2>
         <p className="deck">{gloss.deck}</p>
         {gloss.paragraphs.map((paragraph) => (
           <p key={paragraph} className="essay-narrow">

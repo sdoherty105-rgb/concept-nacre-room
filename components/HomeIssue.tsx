@@ -30,10 +30,8 @@ export function HomeIssue() {
           />
         </div>
         <div className="issue-line">
-          <p className="kicker">
-            Issue <span className="accent">one</span>
-          </p>
-          <p>A room for hair, colour and quiet. Marlowe Cove, in fiction.</p>
+          <p className="kicker">Issue one</p>
+          <p>A hair and beauty room in Marlowe Cove, imagined for this concept.</p>
           <ol className="issue-toc">
             <li>
               <Link href="#contents">Prices</Link>
@@ -78,9 +76,6 @@ export function HomeIssue() {
           />
         </div>
         <div className="colour-copy">
-          <p className="kicker">
-            Spread <span className="accent">two</span>
-          </p>
           <h2>Colour</h2>
           <p>
             Colour is a slow decision. We paint where the light already wants to go, and we leave the rest alone. A gloss
@@ -104,7 +99,6 @@ export function HomeIssue() {
           </p>
         </blockquote>
         <div className="cut-note">
-          <p className="kicker">Spread 03</p>
           <h2>Cut</h2>
           <p>
             Shape first, then finish. Fringes, bobs and long layers are cut to move on the day you leave and on the days
@@ -116,13 +110,10 @@ export function HomeIssue() {
 
       <section className="care spread" id="care" data-layout="spread-care">
         <div className="care-copy">
-          <p className="kicker">
-            Spread <span className="accent">four</span>
-          </p>
           <h2>Care</h2>
           <p>
-            Care is the work that does not pose. Steam, oil, brushes, a basin with a quiet rim. The scalp is part of the
-            haircut, whether or not anyone photographs it.
+            Care takes the longest chair. We use steam, oil and a brush, and a basin with a quiet rim. The scalp is
+            part of the haircut, whether or not anyone photographs it.
           </p>
           <p className="from-line">From {formatPrice(fromPrice("treatments"))}, demonstration price.</p>
         </div>
@@ -151,13 +142,10 @@ export function HomeIssue() {
 
       <section className="people-index spread" data-layout="people-index">
         <div className="people-index-copy">
-          <p className="kicker">Page 14</p>
-          <h2>
-            <span className="accent">Four</span> practices, and no reception line.
-          </h2>
+          <h2>Four practices, each with its own chair</h2>
           <p>
-            The people in this issue are fictional characters. You book a practice, not a personality. Names are here so
-            the page can introduce them.
+            The people in this issue are fictional characters. You book a practice, such as colour or cut, and the name
+            beside it is there so the page can introduce them.
           </p>
           <ol className="name-list">
             {people.map((person) => {
@@ -195,11 +183,8 @@ export function HomeIssue() {
 
       <section className="reserve-invite spread" data-layout="reserve-invite">
         <div className="reserve-invite-copy">
-          <p className="kicker">Page 22</p>
-          <h2>
-            Tell us the ritual. We will keep the rest <em className="accent">quiet</em>.
-          </h2>
-          <p>One question at a time. A running line keeps the total. The request stays on this page.</p>
+          <h2>Tell us the ritual and we will keep the rest quiet</h2>
+          <p>The form asks one question at a time and keeps a running total. The request stays on this page.</p>
           <Link className="text-link" href="/reserve">
             Begin the reservation
           </Link>
@@ -208,7 +193,6 @@ export function HomeIssue() {
 
       <section className="visit spread ink-spread" id="visit" data-layout="visit-card">
         <div className="visit-note">
-          <p className="kicker">Page 24</p>
           <h2>The visit</h2>
           <p>
             Slip this card into the issue. The suburb is invented, the hours are a demonstration, and the door in the

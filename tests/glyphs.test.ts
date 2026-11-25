@@ -37,3 +37,11 @@ describe("no decorative text glyphs in UI source", () => {
     expect(offenders).toEqual([]);
   });
 });
+
+describe("canonical OFF/SHIFT wordmark", () => {
+  it("is byte-equal to the studio source file", () => {
+    const shipped = readFileSync("public/brand/offshift-wordmark-dark.svg");
+    const canonical = readFileSync("tests/fixtures/offshift-wordmark-dark.svg");
+    expect(shipped.equals(canonical)).toBe(true);
+  });
+});

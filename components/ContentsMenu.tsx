@@ -76,7 +76,6 @@ export function ContentsMenu() {
           {contents.map((item) => (
             <li key={item.href} className="overlay-line">
               <Link href={item.href} style={{ ["--thumb" as string]: `url(/media/thumb-${item.thumb}.webp)` }}>
-                <span className="overlay-num">{item.n}</span>
                 <span>{item.label}</span>
               </Link>
             </li>

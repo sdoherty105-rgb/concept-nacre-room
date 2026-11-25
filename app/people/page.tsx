@@ -19,9 +19,6 @@ export default function PeoplePage() {
     <>
       <section className="opener spread people-open">
         <div className="opener-copy">
-          <p className="kicker">
-            Page <span className="accent">14</span>
-          </p>
           <h1>The people</h1>
           <p className="deck">
             Four fictional characters, one practice each. The photographs are generated studies of hair and shoulder.
@@ -69,9 +66,6 @@ export default function PeoplePage() {
 
       <article className="profile profile-c spread" id={sable.anchor}>
         <div className="profile-copy">
-          <p className="kicker">
-            Practice <span className="accent">three</span>
-          </p>
           <h2>{sable.name}</h2>
           <p className="deck">{sable.role}</p>
           <p>{sable.description}</p>
