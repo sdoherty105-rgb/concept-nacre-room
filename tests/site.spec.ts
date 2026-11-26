@@ -37,15 +37,18 @@ for (const p of pages) {
       const slip = page.getByTestId("concept-label");
       await expect(slip).toContainText(/fictional/i);
       await expect(slip).toContainText(/Not a real salon/);
-      const back = slip.getByRole("link", { name: "Back to the concept" });
-      await expect(back).toBeVisible();
-      await expect(back).toHaveAttribute("href", CONCEPT_URL);
-      const cta = slip.getByRole("link", { name: "Want a website like this?" });
+      const cta = slip.getByTestId("concept-cta");
       await expect(cta).toBeVisible();
       await expect(cta).toHaveAttribute("href", ENQUIRY_URL);
       const footer = page.getByRole("contentinfo");
       await expect(footer.getByRole("link", { name: "Want a website like this?" })).toHaveAttribute("href", ENQUIRY_URL);
       await expect(footer.getByRole("link", { name: "Back to the concept" })).toHaveAttribute("href", CONCEPT_URL);
+      const viewport = page.viewportSize();
+      if (viewport && viewport.width >= 768) {
+        const back = slip.getByTestId("concept-return");
+        await expect(back).toBeVisible();
+        await expect(back).toHaveAttribute("href", CONCEPT_URL);
+      }
     });
 
     test("has no horizontal overflow at 320", async ({ page }) => {

@@ -46,11 +46,14 @@ export function HomeIssue() {
               <Link href="#care">Care</Link>
             </li>
           </ol>
+          <Link href="/reserve" className="cover-reserve">
+            Reserve
+          </Link>
         </div>
         <Imprint />
       </section>
 
-      <section className="contents spread ink-spread" id="contents" data-layout="contents">
+      <section className="contents spread" id="contents" data-layout="contents">
         <div className="ox-panel">
           <p className="kicker">The front of the issue</p>
           <h2>Contents</h2>
@@ -91,7 +94,7 @@ export function HomeIssue() {
         </div>
       </section>
 
-      <section className="cut spread ink-spread" id="cut" data-layout="spread-cut">
+      <section className="cut spread" id="cut" data-layout="spread-cut">
         <div className="cut-band" aria-hidden="true" />
         <blockquote className="cut-quote">
           <p>
@@ -191,7 +194,7 @@ export function HomeIssue() {
         </div>
       </section>
 
-      <section className="visit spread ink-spread" id="visit" data-layout="visit-card">
+      <section className="visit spread" id="visit" data-layout="visit-card">
         <div className="visit-note">
           <h2>The visit</h2>
           <p>
